@@ -67,7 +67,7 @@ pipeline {
     stage('Build') {
 		steps {
 			echo "------------>Build<------------"
-			sh '/gradlew --b /build.gradle build -x test'
+			sh './CeibaEnvios/gradlew --b ./CeibaEnvios/build.gradle build -x test'
 		}
     }
   }
