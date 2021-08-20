@@ -4,7 +4,7 @@ pipeline {
 	label 'Slave_Induccion'
   }
 
-  //Opciones específicas de Pipeline dentro del Pipeline
+  //Opciones específicas de Pipeline dentro del PIPELINE
   options {
 	buildDiscarder(logRotator(numToKeepStr: '3'))
 	disableConcurrentBuilds()
@@ -12,7 +12,7 @@ pipeline {
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
-    jdk 'JDK11_Centos' //Verisión preinstalada en la Configuración del Master
+    jdk 'JDK11_Centos' //Verisión preinstalada en la Configuración del MASTER
   }
 /*	Versiones disponibles
       JDK8_Mac
@@ -29,7 +29,7 @@ pipeline {
   stages{
 	stage('Checkout'){
 		steps{
-			echo "------------>Checkout<------------"
+			echo "------------> Checkout <------------"
 			checkout([
 				$class: 'GitSCM',
 				branches: [[name: '*/master']],
@@ -48,7 +48,7 @@ pipeline {
 
     stage('Compile & Unit Tests') {
 		steps{
-			echo "------------>Compile & Unit Tests<------------"
+			echo "------------> Compile & Unit Tests <------------"
 			sh 'chmod +x ./CeibaEnvios/gradlew'
 			sh './CeibaEnvios/gradlew --b ./CeibaEnvios/build.gradle test'
 		}
@@ -56,10 +56,9 @@ pipeline {
 
     stage('Static Code Analysis') {
 		steps{
-			echo '------------>Análisis de código estático<------------'
+			echo '------------>Análisis de código estático con sonar<------------'
 			withSonarQubeEnv('Sonar') {
-				sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner
-				-Dproject.settings=sonar-project.properties"
+				sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
 			}
 		}
     }
