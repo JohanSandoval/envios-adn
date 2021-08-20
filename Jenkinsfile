@@ -39,7 +39,7 @@ pipeline {
 				submoduleCfg: [],
 				userRemoteConfigs: [[
 					credentialsId: 'GitHub_JohanSandoval',
-					url:'https://github.com/JohanSandoval/Envios.git'
+					url:'https://github.com/JohanSandoval/envios-adn.git'
 				]]
 			])
 		}
