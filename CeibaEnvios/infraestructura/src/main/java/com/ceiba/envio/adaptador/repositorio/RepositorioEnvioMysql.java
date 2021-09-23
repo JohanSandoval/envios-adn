@@ -1,6 +1,8 @@
 package com.ceiba.envio.adaptador.repositorio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.ceiba.envio.modelo.entidad.Envio;
@@ -21,9 +23,19 @@ public class RepositorioEnvioMysql implements RepositorioEnvio {
 		this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
 	}
 
+	private SqlParameterSource obtenerParametrosEnvio(Envio envio){
+		return  new MapSqlParameterSource()
+				.addValue("idRemitente", envio.getRemitente().getId())
+				.addValue("idDestinatario", envio.getDestinatario().getId())
+				.addValue("peso", envio.getPeso())
+				.addValue("costo", envio.getCosto())
+				.addValue("fechaLlegada", envio.getFechaEstimadaLlegada());
+	}
+
 	@Override
 	public Long crear(Envio envio) {
-		return this.customNamedParameterJdbcTemplate.crear(envio, sqlCrear);
+		SqlParameterSource parameterSource = this.obtenerParametrosEnvio(envio);
+		return this.customNamedParameterJdbcTemplate.crear(parameterSource, sqlCrear);
 	}
 
 	@Override

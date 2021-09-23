@@ -1,39 +1,27 @@
 package com.ceiba.envio.modelo.dto;
 
+import com.ceiba.destinatatio.modelo.dto.DtoDestinatario;
+import com.ceiba.destinatatio.modelo.entidad.Destinatario;
+import com.ceiba.remitente.modelo.dto.DtoRemitente;
+import com.ceiba.remitente.modelo.entidad.Remitente;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Getter
-@Setter
-@NoArgsConstructor
+@AllArgsConstructor
 public class DtoEnvio {
 
 	private Long id;
-	private String nombre;
-	private String apellido;
-	private String telefono;
-
-	private int ciudadOrigen;
-	private int ciudadDestino;
+	private DtoRemitente remitente;
+	private DtoDestinatario destinatario;
 	private double peso;
 
-	private double costo;
-	private String fechaEstimada;
-	
-	public DtoEnvio(Long id, String nombre, String apellido, String telefono, int ciudadOrigen, int ciudadDestino,
-			double peso, double costo, String fechaEstimada) {
-		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.telefono = telefono;
-		this.ciudadOrigen = ciudadOrigen;
-		this.ciudadDestino = ciudadDestino;
-		this.peso = peso;
-		this.costo = costo;
-		this.fechaEstimada = fechaEstimada;
-	}
-
-
+	private BigDecimal costo;
+	private LocalDate fechaEstimadaLlegada;
 
 }

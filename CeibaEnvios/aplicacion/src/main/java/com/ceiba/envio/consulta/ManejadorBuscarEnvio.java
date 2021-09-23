@@ -16,5 +16,7 @@ public class ManejadorBuscarEnvio {
         this.daoEnvio = daoEnvio;
     }
 
-    public List<DtoEnvio> ejecutar(long id){ return daoEnvio.listarById(id);}
+    public List<DtoEnvio> ejecutar(Long id){
+        return daoEnvio.listarById(id);
+    }
 }

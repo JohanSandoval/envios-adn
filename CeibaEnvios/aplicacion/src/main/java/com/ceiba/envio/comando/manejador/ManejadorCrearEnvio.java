@@ -1,5 +1,7 @@
 package com.ceiba.envio.comando.manejador;
 
+import com.ceiba.destinatatio.puerto.repositorio.RepositorioDestinatario;
+import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.ComandoRespuesta;
@@ -14,14 +16,19 @@ public class ManejadorCrearEnvio implements ManejadorComandoRespuesta<ComandoEnv
 	
 	private final FabricarEnvio fabricarEnvio;
 	private final ServicioCrearEnvio servicioCrearEnvio;
-	
-	public ManejadorCrearEnvio(FabricarEnvio fabricarEnvio, ServicioCrearEnvio servicioCrearEnvio) {
+	private final RepositorioRemitente repositorioRemitente;
+	private final RepositorioDestinatario repositorioDestinatario;
+
+	public ManejadorCrearEnvio(FabricarEnvio fabricarEnvio, ServicioCrearEnvio servicioCrearEnvio,
+							   RepositorioRemitente repositorioRemitente, RepositorioDestinatario repositorioDestinatario) {
 		this.fabricarEnvio = fabricarEnvio;
 		this.servicioCrearEnvio = servicioCrearEnvio;
+		this.repositorioRemitente = repositorioRemitente;
+		this.repositorioDestinatario = repositorioDestinatario;
 	}
 
 	public ComandoRespuesta<Long> ejecutar(ComandoEnvio comandoEnvio) {
-		Envio envio = this.fabricarEnvio.crear(comandoEnvio);
+		Envio envio = this.fabricarEnvio.crear(comandoEnvio, this.repositorioRemitente, this.repositorioDestinatario);
 		return new ComandoRespuesta<>(this.servicioCrearEnvio.ejecutar(envio));
 	}
 }

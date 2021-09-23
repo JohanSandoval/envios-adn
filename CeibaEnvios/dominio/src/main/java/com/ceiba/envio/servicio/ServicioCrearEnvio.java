@@ -1,9 +1,11 @@
 package com.ceiba.envio.servicio;
 
+import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import com.ceiba.enumeraciones.Ciudad;
 import com.ceiba.envio.modelo.entidad.Envio;
 import com.ceiba.envio.puerto.repositorio.RepositorioEnvio;
 
@@ -16,58 +18,58 @@ public class ServicioCrearEnvio {
 	}
 
 	public Long ejecutar(Envio envio) {
+		int numeroDiasHabiles = calculaDiasHabilesEnvio(envio.getRemitente().getCiudad(), envio.getDestinatario().getCiudad());
+		BigDecimal costo = new BigDecimal( calcularCostoEnvio(envio.getPeso()));
 
-		int numeroDiasHabiles = calculaDiasHabilesEnvio(envio.getCiudadOrigen(), envio.getCiudadDestino());
-		double costo = calcularCostoEnvio(envio.getPeso());
-		
-		
 		LocalDate fechaLlegada = LocalDate.now();
 		fechaLlegada = calcularFechaLlegada(fechaLlegada, numeroDiasHabiles);
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		
 
-		return this.repositorioEnvio.crear(new Envio(envio.getNombre(), envio.getApellido(), envio.getTelefono(),
-				envio.getCiudadOrigen(), envio.getCiudadDestino(), envio.getPeso(), costo, fechaLlegada.format(formato)));
+		return this.repositorioEnvio.crear(new Envio(envio.getRemitente(), envio.getDestinatario(),
+				envio.getPeso(), costo, fechaLlegada));
 	}
 
-	private int calculaDiasHabilesEnvio(int ciudadOrigen, int ciudadDestino) {
-
+	private int calculaDiasHabilesEnvio(Ciudad ciudadOrigen, Ciudad ciudadDestino) {
 		int diasHabilesEnvio = 0;
 
-		if (ciudadOrigen == ciudadDestino) {
-			diasHabilesEnvio = 2;
-		} else if ((ciudadOrigen == 1 && ciudadDestino == 2)
-				|| (ciudadOrigen == 2 && ciudadDestino ==1)) {
-			diasHabilesEnvio = 3;
-		} else if ((ciudadOrigen == 1 && ciudadDestino == 3)
-				|| (ciudadOrigen == 3 && ciudadDestino ==1)) {
-			diasHabilesEnvio = 5;
-		} else if ((ciudadOrigen == 1 && ciudadDestino == 4)
-				|| (ciudadOrigen == 4 && ciudadDestino ==1)) {
-			diasHabilesEnvio = 7;
-		}else {
-			diasHabilesEnvio = 999;
+		switch (ciudadOrigen) {
+			case BOGOTA:
+				if(ciudadDestino.equals(Ciudad.BOGOTA)){
+					diasHabilesEnvio = 2;
+				}else if(ciudadDestino.equals(Ciudad.CALI)){
+					diasHabilesEnvio = 3;
+				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
+					diasHabilesEnvio = 5;
+				}
+				break;
+			case MEDELLIN:
+				if(ciudadDestino.equals(Ciudad.BOGOTA)){
+					diasHabilesEnvio = 5;
+				}else if(ciudadDestino.equals(Ciudad.CALI)){
+					diasHabilesEnvio = 3;
+				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
+					diasHabilesEnvio = 2;
+				}
+				break;
+			case CALI:
+				if(ciudadDestino.equals(Ciudad.BOGOTA)){
+					diasHabilesEnvio = 3;
+				}else if(ciudadDestino.equals(Ciudad.CALI)){
+					diasHabilesEnvio = 2;
+				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
+					diasHabilesEnvio = 3;
+				}
+				break;
+			default:
+				diasHabilesEnvio = 0;
+				break;
 		}
-
 		return diasHabilesEnvio;
 	}
 
 	private double calcularCostoEnvio(double peso) {
-		double costo = 0;
+		double costo = 123;
 
-		if (peso > 0 && peso < 10) {
-			costo = 10000;
-		} else if (peso >= 10 && peso < 20) {
-			costo = 15000;
-		} else if (peso >= 20 && peso < 30) {
-			costo = 20000;
-		} else if (peso >= 30 && peso < 40) {
-			costo = 25000;
-		} else if (peso >= 40 && peso < 50) {
-			costo = 30000;
-		} else {
-			costo = 9999999;
-		}
 		return costo;
 	}
 

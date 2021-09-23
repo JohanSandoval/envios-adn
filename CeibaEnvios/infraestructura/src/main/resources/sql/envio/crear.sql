@@ -1,2 +1,2 @@
-insert into envio (nombre, apellido, telefono, ciudad_origen_id, ciudad_destino_id, peso, costo, fecha_llegada)
-values (:nombre, :apellido, :telefono, :ciudadOrigen, :ciudadDestino, :peso, :costo, :fechaEstimada)
+insert into envio (id_remitente, id_destinatario, peso, costo, fecha_llegada)
+values (:idRemitente, :idDestinatario, :peso, :costo, :fechaLlegada);
