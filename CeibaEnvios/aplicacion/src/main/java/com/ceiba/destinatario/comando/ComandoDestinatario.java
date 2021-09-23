@@ -9,6 +9,6 @@ public class ComandoDestinatario {
     private String cedula;
     private String nombre;
     private String apellido;
-    private Ciudad ciudad;
+    private String ciudad;
     private String direccion;
 }
