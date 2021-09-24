@@ -5,8 +5,6 @@ import com.ceiba.destinatatio.modelo.entidad.Destinatario;
 import com.ceiba.remitente.modelo.entidad.Remitente;
 import com.ceiba.remitente.servicio.testdatabuilder.RemitenteTestDataBuilder;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class EnvioTestDataBuilder {
 

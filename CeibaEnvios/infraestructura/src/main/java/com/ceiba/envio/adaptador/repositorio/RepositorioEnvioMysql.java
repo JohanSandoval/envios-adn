@@ -41,9 +41,12 @@ public class RepositorioEnvioMysql implements RepositorioEnvio {
 	@Override
 	public void actualizar(Envio envio) {
 		// TODO Auto-generated method stub
-
 	}
 
+	@Override
+	public void eliminar(Long id) {
+		// TODO Auto-generated method stub
 
+	}
 
 }
