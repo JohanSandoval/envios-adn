@@ -18,6 +18,6 @@ public enum CostoPorPeso implements Costo{
 
     @Override
     public BigDecimal calcularCosto(double peso) {
-        return new BigDecimal(peso * this.valorKl);
+        return BigDecimal.valueOf(peso * this.valorKl);
     }
 }
