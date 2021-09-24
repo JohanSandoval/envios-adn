@@ -44,22 +44,6 @@ public class RepositorioEnvioMysql implements RepositorioEnvio {
 
 	}
 
-	@Override
-	public void eliminar(Long id) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public boolean existe(Envio nombre) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean existeExcluyendoId(Long id, String nombre) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

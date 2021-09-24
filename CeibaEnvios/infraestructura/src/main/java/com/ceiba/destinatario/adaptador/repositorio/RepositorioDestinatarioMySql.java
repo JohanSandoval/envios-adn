@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository
@@ -58,7 +59,8 @@ public class RepositorioDestinatarioMySql implements RepositorioDestinatario {
             return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                     .queryForObject(sqlObtenerPorCedula, parameterSource, new MapeoEntidadDestinatario());
         }catch (EmptyResultDataAccessException emptyResultDataAccessException){
-                return null;
+            LOGGER.log(Level.FINE, REGISTRO_NO_ENCONTRADO, emptyResultDataAccessException);
+            return null;
         }
     }
 

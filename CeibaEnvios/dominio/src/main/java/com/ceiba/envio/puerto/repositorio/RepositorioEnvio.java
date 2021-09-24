@@ -8,9 +8,4 @@ public interface RepositorioEnvio {
 
     void actualizar(Envio envio);
 
-    void eliminar(Long id);
-
-    boolean existe(Envio nombre);
-
-    boolean existeExcluyendoId(Long id, String nombre);
 }
