@@ -33,7 +33,7 @@ public class Remitente {
         validarObligatorio(nombre, NOMBRE_OBLIGATORIO);
         validarObligatorio(apellido, APELLIDO_OBLIGATORIO);
         validarObligatorio(ciudad, CIUDAD_OBLIGATORIA);
-        validarValido(ciudad.toString(), Ciudad.class, CIUDAD_INVALIDA );
+        validarValido(ciudad, Ciudad.class, CIUDAD_INVALIDA );
         validarObligatorio(telefono, TELEFONO_OBLIGATORIO);
 
         this.cedula = cedula;

@@ -3,8 +3,6 @@ package com.ceiba.destinatatio.servicio;
 import com.ceiba.destinatatio.modelo.entidad.Destinatario;
 import com.ceiba.destinatatio.puerto.repositorio.RepositorioDestinatario;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-import com.ceiba.remitente.modelo.entidad.Remitente;
-import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
 
 public class ServicioCrearDestinatario {
 

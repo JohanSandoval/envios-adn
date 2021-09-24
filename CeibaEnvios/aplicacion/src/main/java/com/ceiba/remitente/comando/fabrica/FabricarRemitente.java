@@ -1,6 +1,5 @@
 package com.ceiba.remitente.comando.fabrica;
 
-import com.ceiba.enumeraciones.Ciudad;
 import com.ceiba.remitente.comando.ComandoRemitente;
 import com.ceiba.remitente.modelo.entidad.Remitente;
 import org.springframework.stereotype.Component;

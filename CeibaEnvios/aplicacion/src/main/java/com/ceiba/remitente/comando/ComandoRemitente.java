@@ -1,6 +1,5 @@
 package com.ceiba.remitente.comando;
 
-import com.ceiba.enumeraciones.Ciudad;
 import lombok.Data;
 
 @Data

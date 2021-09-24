@@ -12,5 +12,5 @@ public interface RepositorioRemitente {
 
     boolean existe(String id);
 
-    Remitente optenerPorCedula(String Cedula);
+    Remitente optenerPorCedula(String cedula);
 }
