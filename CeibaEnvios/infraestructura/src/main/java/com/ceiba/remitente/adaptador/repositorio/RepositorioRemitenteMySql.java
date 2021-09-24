@@ -2,7 +2,6 @@ package com.ceiba.remitente.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.remitente.adaptador.dao.MapeoRemitente;
 import com.ceiba.remitente.modelo.entidad.Remitente;
 import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -35,6 +34,8 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
     @SqlStatement(namespace = "remitente", value = "existe")
     private static String sqlExiste;
 
+    private static String cedulaa = "cedula";
+
     public RepositorioRemitenteMySql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -42,7 +43,7 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
     private SqlParameterSource obtenerParametrosRemitente(Remitente remitente){
         return  new MapSqlParameterSource()
                 .addValue("id", remitente.getId())
-                .addValue("cedula", remitente.getCedula())
+                .addValue(cedulaa, remitente.getCedula())
                 .addValue("nombre", remitente.getNombre())
                 .addValue("apellido", remitente.getApellido())
                 .addValue("ciudad", remitente.getCiudad().toString())
@@ -64,7 +65,7 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
     @Override
     public Remitente optenerPorCedula(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("cedula", cedula);
+        parameterSource.addValue(cedulaa, cedula);
 
         try {
             return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
@@ -85,7 +86,7 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
     @Override
     public boolean existe(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("cedula", cedula);
+        parameterSource.addValue(cedulaa, cedula);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExiste, parameterSource, Boolean.class);
     }

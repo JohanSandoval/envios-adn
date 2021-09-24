@@ -1,13 +1,11 @@
 package com.ceiba.remitente.controlador;
 
 import com.ceiba.ComandoRespuesta;
-import com.ceiba.envio.controlador.ComandoControladorEnvio;
 import com.ceiba.remitente.comando.ComandoRemitente;
 import com.ceiba.remitente.comando.manejador.ManejadorActualizarRemitente;
 import com.ceiba.remitente.comando.manejador.ManejadorCrearRemitente;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
