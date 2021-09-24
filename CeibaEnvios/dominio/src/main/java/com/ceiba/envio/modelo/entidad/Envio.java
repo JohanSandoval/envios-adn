@@ -1,11 +1,14 @@
 package com.ceiba.envio.modelo.entidad;
 
 import com.ceiba.destinatatio.modelo.entidad.Destinatario;
+import com.ceiba.enumeraciones.Ciudad;
+import com.ceiba.enumeraciones.CostoPorPeso;
 import com.ceiba.remitente.modelo.entidad.Remitente;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
@@ -36,68 +39,98 @@ public class Envio {
 
 	public Envio(Remitente remitente, Destinatario destinatario, double peso){
 
-		System.out.println(remitente.toString());
-		//validarObligatorio(remitente, REMITENTE_OBLIGATORIO);
-		validarObligatorio(destinatario, DESTINARTARIO_OBLIGATORIO);
-		validarObligatorio(peso, PESO_OBLIGATORIO);
-		validarMenor((long) peso, PESO_MAXIMO, PESO_MENOR_50);
-		validarPositivo(peso, PESO_MAYOR_0);
-
-		this.remitente = remitente;
-		this.destinatario = destinatario;
-		this.peso = peso;
-	}
-
-	public Envio(Remitente remitente, Destinatario destinatario, double peso, BigDecimal costo, LocalDate fechaEstimadaLlegada) {
-
 		validarObligatorio(remitente, REMITENTE_OBLIGATORIO);
 		validarObligatorio(destinatario, DESTINARTARIO_OBLIGATORIO);
 		validarObligatorio(peso, PESO_OBLIGATORIO);
 		validarMenor((long) peso, PESO_MAXIMO, PESO_MENOR_50);
 		validarPositivo(peso, PESO_MAYOR_0);
 
-		validarObligatorio(costo, COSTO_OBLIGATORIO);
-		validarObligatorio(fechaEstimadaLlegada, FECHA_LLEGADA_OBLIGATORIA);
-
 		this.remitente = remitente;
 		this.destinatario = destinatario;
 		this.peso = peso;
-		this.costo = costo;
-		this.fechaEstimadaLlegada = fechaEstimadaLlegada;
+		this.obtenerCosto(peso);
+		this.fechaEstimadaLlegada = calcularFecha(remitente.getCiudad(), destinatario.getCiudad());
 	}
 
-
-	/*public Envio(String nombre, String apellido, String telefono, int ciudadOrigen, int ciudadDestino,
-			double peso) {
-		validarObligatorio(nombre, SE_DEBE_INGRESAR_UN_NOMBRE_DESTINATARIO);
-		validarObligatorio(apellido, SE_DEBE_INGRESAR_UN_APELLIDO_DESTINATARIO);
-		validarObligatorio(telefono, SE_DEBE_INGRESAR_UN_TELEFONO_CONTACTO);
-		validarObligatorio(ciudadOrigen, SE_DEBE_INGRESAR_UNA_CIUDAD_DE_ORIGEN);
-		validarObligatorio(ciudadDestino, SE_DEBE_INGRESAR_UNA_CIUDAD_DE_DESTINO);
-		validarMenor((long) peso, PESO_DEBE_SER_MENOR_A_50, SE_DEBE_INGRESAR_UN_PESO_MENOR_50);
-		validarPositivo(peso, SE_DEBE_INGRESAR_UN_PESO_POSITIVO);
-
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.telefono = telefono;
-		this.ciudadOrigen = ciudadOrigen;
-		this.ciudadDestino = ciudadDestino;
-		this.peso = peso;
+	private LocalDate calcularFecha(Ciudad origen, Ciudad destino){
+		int diasHabiles = calcularDiasHabiles(origen, destino);
+		return calcularFechaLlegada(diasHabiles);
 	}
 
-	public Envio(String nombre, String apellido, String telefono, int ciudadOrigen, int ciudadDestino,
-			double peso, double costo, String fechaEstimada) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.telefono = telefono;
-		this.ciudadOrigen = ciudadOrigen;
-		this.ciudadDestino = ciudadDestino;
-		this.peso = peso;
-		this.costo = costo;
-		this.fechaEstimada = fechaEstimada;
-	}*/
+	private int calcularDiasHabiles(Ciudad ciudadOrigen, Ciudad ciudadDestino){
+		int diasHabilesEnvio = 0;
 
+		switch (ciudadOrigen) {
+			case BOGOTA:
+				if(ciudadDestino.equals(Ciudad.BOGOTA)){
+					diasHabilesEnvio = 2;
+				}else if(ciudadDestino.equals(Ciudad.CALI)){
+					diasHabilesEnvio = 3;
+				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
+					diasHabilesEnvio = 5;
+				}
+				break;
+			case MEDELLIN:
+				if(ciudadDestino.equals(Ciudad.BOGOTA)){
+					diasHabilesEnvio = 5;
+				}else if(ciudadDestino.equals(Ciudad.CALI)){
+					diasHabilesEnvio = 3;
+				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
+					diasHabilesEnvio = 2;
+				}
+				break;
+			case CALI:
+				if(ciudadDestino.equals(Ciudad.BOGOTA)){
+					diasHabilesEnvio = 3;
+				}else if(ciudadDestino.equals(Ciudad.CALI)){
+					diasHabilesEnvio = 2;
+				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
+					diasHabilesEnvio = 3;
+				}
+				break;
+			default:
+				diasHabilesEnvio = 0;
+				break;
+		}
+		return diasHabilesEnvio;
+	}
+
+	private LocalDate calcularFechaLlegada(int diasHabiles){
+		LocalDate result = LocalDate.now();
+		int addedDays = 0;
+		while (addedDays < diasHabiles) {
+			result = result.plusDays(1);
+			if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY || result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+				++addedDays;
+			}
+		}
+		return result;
+	}
+
+	private CostoPorPeso calcularPresioKl(Double peso){
+
+		CostoPorPeso costoPorPeso = CostoPorPeso.MAYOR_O_MENOR_10;
+
+		if(peso >= 10){
+			costoPorPeso = CostoPorPeso.MAYOR_IGUAL_10_MENOR_20;
+		}
+
+		if(peso >= 20){
+			costoPorPeso = CostoPorPeso.MAYOR_IGUAL_20_MENOR_30;
+		}
+		if(peso >= 30){
+			costoPorPeso = CostoPorPeso.MAYOR_IGUAL_30_MENOR_40;
+		}
+		if(peso >= 40){
+			costoPorPeso = CostoPorPeso.MAYOR_IGUAL_40_MENOR_50;
+		}
+		return costoPorPeso;
+	}
+
+	private void obtenerCosto(double peso){
+		CostoPorPeso costoPorPeso = this.calcularPresioKl(peso);
+		this.costo = costoPorPeso.calcularCosto(peso);
+	}
 
 
 }
