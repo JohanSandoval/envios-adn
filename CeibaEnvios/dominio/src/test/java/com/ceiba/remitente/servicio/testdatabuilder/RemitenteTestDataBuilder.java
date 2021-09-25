@@ -5,12 +5,13 @@ import com.ceiba.remitente.modelo.entidad.Remitente;
 
 public class RemitenteTestDataBuilder {
 
-    private static final String CEDULA_REMITENTE = "101010";
+    private static final String CEDULA_REMITENTE = "10101010";
     private static final String NOMBRE_REMITENTE = "Juan";
     private static final String APELLIDO_REMITENTE = "Perez";
     private static final String TELEFONO_REMITENTE = "5553355";
     private static final String CIUDAD_REMITENTE = "BOGOTA";
 
+    private Long id;
     private String cedula;
     private String nombre;
     private String apellido;
@@ -37,6 +38,6 @@ public class RemitenteTestDataBuilder {
     }
 
     public Remitente build(){
-        return new Remitente(this.cedula, this.nombre, this.apellido, this.ciudad, this.telefono);
+        return new Remitente(this.id, this.cedula, this.nombre, this.apellido, this.ciudad, this.telefono);
     }
 }

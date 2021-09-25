@@ -41,7 +41,7 @@ public class BeanServicio {
 	public ServicioActualizarRemitente servicioActualizarRemitente(RepositorioRemitente repositorioRemitente){
 		return  new ServicioActualizarRemitente(repositorioRemitente);
 	}
-	
+
 	@Bean
 	public ServicioCrearDestinatario servicioCrearDestinatario(RepositorioDestinatario repositorioDestinatario){
 		return new ServicioCrearDestinatario(repositorioDestinatario);

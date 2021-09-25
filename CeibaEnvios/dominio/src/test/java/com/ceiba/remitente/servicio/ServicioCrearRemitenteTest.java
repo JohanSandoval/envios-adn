@@ -2,6 +2,7 @@ package com.ceiba.remitente.servicio;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.remitente.modelo.entidad.Remitente;
 import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
@@ -28,6 +29,14 @@ public class ServicioCrearRemitenteTest {
         ServicioCrearRemitente servicioCrearRemitente = new ServicioCrearRemitente(repositorioRemitente);
         //act - assert
         BasePrueba.assertThrows(() -> servicioCrearRemitente.ejecutar(remitente), ExcepcionDuplicidad.class, "El remitente ya esta registrado en el sistema");
+    }
+
+    @Test
+    public void validarCedulaLongitudMenor8Test(){
+        //arrange
+        RemitenteTestDataBuilder remitenteTestDataBuilder= new RemitenteTestDataBuilder().conCedula("123456");
+        BasePrueba.assertThrows(() -> remitenteTestDataBuilder.build(), ExcepcionLongitudValor.class, "la cedula debe tener un longiturd minima de 8");
+
     }
 
 }
