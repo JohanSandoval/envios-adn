@@ -8,6 +8,6 @@ public interface DaoRemitente {
 
     List<DtoRemitente> listar();
 
-    List<DtoRemitente> listarById(Long id);
+    List<DtoRemitente> listarByCedula(String cedula);
 
 }

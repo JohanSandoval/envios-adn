@@ -15,7 +15,7 @@ public class ManejadorBuscarRemitente {
         this.daoRemitente = daoRemitente;
     }
 
-    public List<DtoRemitente> ejecutar(Long id){
-        return daoRemitente.listarById(id);
+    public List<DtoRemitente> ejecutar(String cedula){
+        return daoRemitente.listarByCedula(cedula);
     }
 }

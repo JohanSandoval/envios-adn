@@ -11,7 +11,6 @@ import com.ceiba.envio.servicio.ServicioEliminarEnvio;
 import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
 import com.ceiba.remitente.servicio.ServicioActualizarRemitente;
 import com.ceiba.remitente.servicio.ServicioCrearRemitente;
-import com.ceiba.remitente.servicio.ServicioEliminarRemitente;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,12 +41,7 @@ public class BeanServicio {
 	public ServicioActualizarRemitente servicioActualizarRemitente(RepositorioRemitente repositorioRemitente){
 		return  new ServicioActualizarRemitente(repositorioRemitente);
 	}
-
-	@Bean
-	public ServicioEliminarRemitente servicioEliminarRemitente(RepositorioRemitente repositorioRemitente){
-		return new ServicioEliminarRemitente(repositorioRemitente);
-	}
-
+	
 	@Bean
 	public ServicioCrearDestinatario servicioCrearDestinatario(RepositorioDestinatario repositorioDestinatario){
 		return new ServicioCrearDestinatario(repositorioDestinatario);

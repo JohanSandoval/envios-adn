@@ -17,7 +17,7 @@ public class MapeoEntidadRemitente implements RowMapper<Remitente>, MapperResult
         String cedula = resultSet.getString("cedula");
         String nombre = resultSet.getString("nombre");
         String apellido = resultSet.getString("apellido");
-        Ciudad ciudad = Ciudad.valueOf(resultSet.getString("ciudad"));
+        String ciudad = resultSet.getString("ciudad");
         String telefono = resultSet.getString("telefono");
 
         return new Remitente(id, cedula, nombre, apellido, ciudad, telefono);

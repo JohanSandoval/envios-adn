@@ -34,6 +34,9 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
     @SqlStatement(namespace = "remitente", value = "existe")
     private static String sqlExiste;
 
+    @SqlStatement(namespace = "remitente", value = "existeExcluyendoId")
+    private static String sqlExisteExcluyendoId;
+
     private static String cedulaa = "cedula";
 
     public RepositorioRemitenteMySql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -43,7 +46,7 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
     private SqlParameterSource obtenerParametrosRemitente(Remitente remitente){
         return  new MapSqlParameterSource()
                 .addValue("id", remitente.getId())
-                .addValue(cedulaa, remitente.getCedula())
+                .addValue("cedula", remitente.getCedula())
                 .addValue("nombre", remitente.getNombre())
                 .addValue("apellido", remitente.getApellido())
                 .addValue("ciudad", remitente.getCiudad().toString())
@@ -59,13 +62,14 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
     @Override
     public void actualizar(Remitente remitente) {
         SqlParameterSource parameterSource = this.obtenerParametrosRemitente(remitente);
+
         this.customNamedParameterJdbcTemplate.actualizar(parameterSource, sqlActualizar);
     }
 
     @Override
     public Remitente optenerPorCedula(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue(cedulaa, cedula);
+        parameterSource.addValue("cedula", cedula);
 
         try {
             return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
@@ -76,18 +80,21 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
         }
     }
 
-    @Override
-    public void eliminar(Long id) {
-        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("id", id);
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, parameterSource);
-    }
 
     @Override
     public boolean existe(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue(cedulaa, cedula);
+        parameterSource.addValue("cedula", cedula);
+        System.out.println(cedula + " existe");
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExiste, parameterSource, Boolean.class);
+    }
+
+    @Override
+    public boolean existeExcluyendoId(Long id, String cedula) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        parameterSource.addValue("cedula", cedula);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId, parameterSource, Boolean.class);
     }
 }

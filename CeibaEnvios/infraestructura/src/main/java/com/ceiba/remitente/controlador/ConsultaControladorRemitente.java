@@ -32,10 +32,10 @@ public class ConsultaControladorRemitente {
         return manejadorListarRemitentes.ejecutar();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{cedula}")
     @ApiOperation("Buscar Remitente")
-    public List<DtoRemitente> listarById(@PathVariable Long id){
-        return  manejadorBuscarRemitente.ejecutar(id);
+    public List<DtoRemitente> listarById(@PathVariable String cedula){
+        return  manejadorBuscarRemitente.ejecutar(cedula);
     }
 }
 

@@ -9,6 +9,7 @@ public class FabricarRemitente {
 
     public Remitente crear(ComandoRemitente comandoRemitente){
         return new Remitente(
+                comandoRemitente.getId(),
                 comandoRemitente.getCedula(),
                 comandoRemitente.getNombre(),
                 comandoRemitente.getApellido(),

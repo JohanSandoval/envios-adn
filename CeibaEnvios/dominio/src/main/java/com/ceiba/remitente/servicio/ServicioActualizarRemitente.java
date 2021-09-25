@@ -3,6 +3,7 @@ package com.ceiba.remitente.servicio;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.remitente.modelo.entidad.Remitente;
 import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
+import jdk.swing.interop.SwingInterOpUtils;
 
 public class ServicioActualizarRemitente {
 
@@ -20,7 +21,7 @@ public class ServicioActualizarRemitente {
     }
 
     public void validarExistenciaPrevia(Remitente remitente){
-        boolean existe = this.repositorioRemitente.existe(remitente.getCedula());
+        boolean existe = this.repositorioRemitente.existeExcluyendoId(remitente.getId(), remitente.getCedula());
         if(existe) {
             throw new ExcepcionDuplicidad(EL_REMITENTE_NO_ESTA_REGISTRADO);
         }

@@ -27,9 +27,10 @@ public class ComandoControladorRemitente {
         return  this.manejadorCrearRemitente.ejecutar(comandoRemitente);
     }
 
-    @PutMapping
+    @PutMapping(value="/{id}")
     @ApiOperation("Actualizar remitente")
-    public void actualizar(@RequestBody ComandoRemitente comandoRemitente){
+    public void actualizar(@RequestBody ComandoRemitente comandoRemitente, @PathVariable Long id){
+        comandoRemitente.setId(id);
         this.manejadorActualizarRemitente.ejecutar(comandoRemitente);
     }
 

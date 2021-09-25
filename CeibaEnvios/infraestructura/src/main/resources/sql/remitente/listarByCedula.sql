@@ -6,4 +6,4 @@ SELECT
     ciudad,
     telefono
 FROM remitente
-WHERE id = :id;
+WHERE cedula = :cedula;

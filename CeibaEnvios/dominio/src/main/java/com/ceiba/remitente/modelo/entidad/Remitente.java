@@ -27,7 +27,7 @@ public class Remitente {
     private Ciudad ciudad;
     private String telefono;
 
-    public Remitente(String cedula, String nombre, String apellido, String ciudad, String telefono) {
+    public Remitente(Long id,String cedula, String nombre, String apellido, String ciudad, String telefono) {
 
         validarObligatorio(cedula, CEDULA_OBLIGATORIA);
         validarObligatorio(nombre, NOMBRE_OBLIGATORIO);
@@ -36,6 +36,7 @@ public class Remitente {
         validarValido(ciudad, Ciudad.class, CIUDAD_INVALIDA );
         validarObligatorio(telefono, TELEFONO_OBLIGATORIO);
 
+        this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;

@@ -21,7 +21,7 @@ public class ServicioEliminarDestinatario {
 
     public void validarExistenciaPrevia(Destinatario destinatario){
         boolean existe = this.repositorioDestinatario.existe(destinatario.getNombre());
-        if(!existe) {
+        if(existe) {
             throw new ExcepcionDuplicidad(EL_DESTINATARIO_NO_ESTA_REGISTRADO);
         }
     }

@@ -8,9 +8,9 @@ public interface RepositorioRemitente {
 
     void actualizar(Remitente remitente);
 
-    void eliminar(Long id);
+    boolean existe(String cedula);
 
-    boolean existe(String id);
+    boolean existeExcluyendoId(Long id, String cedula);
 
     Remitente optenerPorCedula(String cedula);
 }

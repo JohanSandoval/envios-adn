@@ -17,8 +17,8 @@ public class DaoRemitenteMySql implements DaoRemitente {
     @SqlStatement(namespace="remitente", value="listar")
     private static String sqlListar;
 
-    @SqlStatement(namespace="remitente", value="listarById")
-    private static String sqlListarById;
+    @SqlStatement(namespace="remitente", value="listarByCedula")
+    private static String sqlListarByCedula;
 
     public DaoRemitenteMySql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -30,9 +30,9 @@ public class DaoRemitenteMySql implements DaoRemitente {
     }
 
     @Override
-    public List<DtoRemitente> listarById(Long id) {
+    public List<DtoRemitente> listarByCedula(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("id", id);
-        return  this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarById, parameterSource, new MapeoRemitente());
+        parameterSource.addValue("cedula", cedula);
+        return  this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarByCedula, parameterSource, new MapeoRemitente());
     }
 }
