@@ -37,6 +37,12 @@ public class RemitenteTestDataBuilder {
         return this;
     }
 
+    public RemitenteTestDataBuilder conId(Long id){
+        this.id = id;
+        this.cedula = cedula;
+        return this;
+    }
+
     public Remitente build(){
         return new Remitente(this.id, this.cedula, this.nombre, this.apellido, this.ciudad, this.telefono);
     }

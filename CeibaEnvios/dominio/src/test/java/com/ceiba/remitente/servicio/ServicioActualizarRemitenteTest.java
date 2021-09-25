@@ -13,13 +13,15 @@ public class ServicioActualizarRemitenteTest {
     @Test
     public void validarExistenciaPreviaRemitenteTest(){
         //arrange
-        Remitente remitente = new RemitenteTestDataBuilder().build();
+        Remitente remitente = new RemitenteTestDataBuilder().conId(1L).build();
         RepositorioRemitente repositorioRemitente = Mockito.mock(RepositorioRemitente.class);
-        Mockito.when(repositorioRemitente.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioRemitente.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(true);
         ServicioActualizarRemitente servicioActualizarRemitente = new ServicioActualizarRemitente(repositorioRemitente);
 
         //act - assert
         BasePrueba.assertThrows(() -> servicioActualizarRemitente.ejecutar(remitente), ExcepcionDuplicidad.class, "El remitente no esta registrado en el sistema");
     }
+
+    
 
 }
