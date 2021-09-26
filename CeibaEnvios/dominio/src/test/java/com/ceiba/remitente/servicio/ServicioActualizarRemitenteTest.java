@@ -22,6 +22,4 @@ public class ServicioActualizarRemitenteTest {
         BasePrueba.assertThrows(() -> servicioActualizarRemitente.ejecutar(remitente), ExcepcionDuplicidad.class, "El remitente no esta registrado en el sistema");
     }
 
-    
-
 }
