@@ -30,9 +30,9 @@ public class DaoDestinatarioMySql implements DaoDestinatario {
     }
 
     @Override
-    public List<DtoDestinatario> listarById(Long id) {
+    public List<DtoDestinatario> listarById(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("id", id);
+        parameterSource.addValue("cedula", cedula);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarById, parameterSource, new MapeoDestinatario());
     }
 }

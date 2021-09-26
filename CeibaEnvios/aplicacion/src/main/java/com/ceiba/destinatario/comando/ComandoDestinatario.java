@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ComandoDestinatario {
 
+    private Long id;
     private String cedula;
     private String nombre;
     private String apellido;

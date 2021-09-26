@@ -3,7 +3,6 @@ package com.ceiba.configuracion;
 import com.ceiba.destinatatio.puerto.repositorio.RepositorioDestinatario;
 import com.ceiba.destinatatio.servicio.ServicioActualizarDestinatario;
 import com.ceiba.destinatatio.servicio.ServicioCrearDestinatario;
-import com.ceiba.destinatatio.servicio.ServicioEliminarDestinatario;
 import com.ceiba.envio.puerto.repositorio.RepositorioEnvio;
 import com.ceiba.envio.servicio.ServicioActualizarEnvio;
 import com.ceiba.envio.servicio.ServicioCrearEnvio;
@@ -52,8 +51,4 @@ public class BeanServicio {
 		return  new ServicioActualizarDestinatario(repositorioDestinatario);
 	}
 
-	@Bean
-	public ServicioEliminarDestinatario servicioEliminarDestinatario(RepositorioDestinatario repositorioDestinatario){
-		return new ServicioEliminarDestinatario(repositorioDestinatario);
-	}
 }

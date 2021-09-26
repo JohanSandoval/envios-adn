@@ -8,5 +8,5 @@ public interface DaoDestinatario {
 
     List<DtoDestinatario> listar();
 
-    List<DtoDestinatario> listarById(Long id);
+    List<DtoDestinatario> listarById(String cedula);
 }

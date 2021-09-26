@@ -29,9 +29,10 @@ public class ComandoControladorDestinatario {
         return this.manejadorCrearDestinatario.ejecutar(comandoDestinatario);
     }
 
-    @PutMapping
+    @PutMapping(value = "/{id}")
     @ApiOperation("Actualizar destinatario")
-    public void actualizar(@RequestBody ComandoDestinatario comandoDestinatario){
+    public void actualizar(@RequestBody ComandoDestinatario comandoDestinatario, @PathVariable Long id){
+        comandoDestinatario.setId(id);
         this.manejadorActualizarDestinatario.ejecutar(comandoDestinatario);
     }
 }

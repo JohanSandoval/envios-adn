@@ -1,5 +1,6 @@
 UPDATE remitente
-SET nombre = :nombre,
+SET cedula = :cedula,
+    nombre = :nombre,
     apellido = :apellido,
     ciudad = :ciudad,
     telefono = :telefono

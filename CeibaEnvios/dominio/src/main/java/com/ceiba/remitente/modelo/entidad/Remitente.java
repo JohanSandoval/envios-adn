@@ -12,7 +12,6 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 @AllArgsConstructor
 public class Remitente {
 
-    private static final String ID_OBLIGATORIO = "Debe ingresar el id";
     private static final String CEDULA_OBLIGATORIA = "Debe ingresar la cedula";
     private static final String LA_CEDULA_DEBE_SER_MAYOR_O_IGUAL = "la cedula debe tener un longiturd minima de 8";
     private static final String NOMBRE_OBLIGATORIO = "Debe ingresar el nombre";

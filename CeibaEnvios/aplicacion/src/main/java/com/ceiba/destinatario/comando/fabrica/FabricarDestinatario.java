@@ -9,6 +9,7 @@ public class FabricarDestinatario {
 
     public Destinatario crear(ComandoDestinatario comandoDestinatario){
         return new Destinatario(
+                comandoDestinatario.getId(),
                 comandoDestinatario.getCedula(),
                 comandoDestinatario.getNombre(),
                 comandoDestinatario.getApellido(),

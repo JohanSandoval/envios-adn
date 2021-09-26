@@ -6,4 +6,4 @@ SELECT
     ciudad,
     direccion
 FROM destinatario
-WHERE id = :id;
+WHERE cedula = :cedula;

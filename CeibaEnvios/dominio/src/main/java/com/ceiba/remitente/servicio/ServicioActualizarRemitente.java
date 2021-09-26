@@ -3,7 +3,6 @@ package com.ceiba.remitente.servicio;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.remitente.modelo.entidad.Remitente;
 import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
-import jdk.swing.interop.SwingInterOpUtils;
 
 public class ServicioActualizarRemitente {
 

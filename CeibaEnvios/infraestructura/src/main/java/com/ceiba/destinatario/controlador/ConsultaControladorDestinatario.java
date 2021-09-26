@@ -5,10 +5,7 @@ import com.ceiba.destinatario.consulta.ManejadorListarDestinatario;
 import com.ceiba.destinatatio.modelo.dto.DtoDestinatario;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,9 +28,9 @@ public class ConsultaControladorDestinatario {
         return manejadorListarDestinatario.ejecutar();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{cedula}")
     @ApiOperation("Buscar Destinatario")
-    public List<DtoDestinatario> listarById(@PathVariable Long id){
-        return manejadorBuscarDestinatario.ejecutar(id);
+    public List<DtoDestinatario> listarById(@PathVariable String cedula){
+        return manejadorBuscarDestinatario.ejecutar(cedula);
     }
 }

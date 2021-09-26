@@ -1,6 +1,5 @@
 package com.ceiba.remitente.adaptador.repositorio;
 
-import com.ceiba.enumeraciones.Ciudad;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.remitente.modelo.entidad.Remitente;
 import org.springframework.jdbc.core.RowMapper;

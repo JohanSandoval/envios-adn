@@ -15,7 +15,7 @@ public class ManejadorBuscarDestinatario {
         this.daoDestinatario = daoDestinatario;
     }
 
-    public List<DtoDestinatario> ejecutar(Long id){
-        return daoDestinatario.listarById(id);
+    public List<DtoDestinatario> ejecutar(String cedula){
+        return daoDestinatario.listarById(cedula);
     }
 }

@@ -5,12 +5,13 @@ import com.ceiba.enumeraciones.Ciudad;
 
 public class DestinatarioTestDataBuilder {
 
-    private static final String CEDULA_DESTINATARIO = "202020";
+    private static final String CEDULA_DESTINATARIO = "20202020";
     private static final String NOMBRE_DESTINATARIO = "Karla";
     private static final String APELLIDO_DESTINATARIO = "Duarte";
     private static final String CIUDAD_DESTINATARIO = "BOGOTA";
     private static final String DIRECCION_DESTINATARIO = "AV siempre viva";
 
+    private  Long id;
     private String cedula;
     private String nombre;
     private String apellido;
@@ -35,7 +36,12 @@ public class DestinatarioTestDataBuilder {
         return this;
     }
 
+    public DestinatarioTestDataBuilder conId(Long id){
+        this.id = id;
+        return this;
+    }
+
     public Destinatario build(){
-        return new Destinatario(this.cedula, this.nombre, this.apellido, this.ciudad, this.direccion);
+        return new Destinatario(this.id, this.cedula, this.nombre, this.apellido, this.ciudad, this.direccion);
     }
 }

@@ -1,6 +1,5 @@
 UPDATE destinatario
-set
-    cedula = :cedula,
+set cedula = :cedula,
     nombre = :nombre,
     apellido = :apellido,
     ciudad = :ciudad,

@@ -28,9 +28,6 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
     @SqlStatement(namespace = "remitente", value = "optenerPorCedula")
     private static String sqlObtenerPorCedula;
 
-    @SqlStatement(namespace = "remitente", value = "eliminar")
-    private static String sqlEliminar;
-
     @SqlStatement(namespace = "remitente", value = "existe")
     private static String sqlExiste;
 
