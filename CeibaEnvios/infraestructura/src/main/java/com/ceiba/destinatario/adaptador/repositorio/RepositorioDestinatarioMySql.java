@@ -35,6 +35,8 @@ public class RepositorioDestinatarioMySql implements RepositorioDestinatario {
     @SqlStatement(namespace = "destinatario", value = "existeExcluyendoId")
     private static String sqlExisteExcluyendoId;
 
+    private static String cedulaa = "cedula";
+
     @Autowired
     public RepositorioDestinatarioMySql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -43,7 +45,7 @@ public class RepositorioDestinatarioMySql implements RepositorioDestinatario {
     private SqlParameterSource obtenerParametrosDestinatario(Destinatario destinatario){
         return new MapSqlParameterSource()
                 .addValue("id", destinatario.getId())
-                .addValue("cedula", destinatario.getCedula())
+                .addValue(cedulaa, destinatario.getCedula())
                 .addValue("nombre", destinatario.getNombre())
                 .addValue("apellido", destinatario.getApellido())
                 .addValue("ciudad", destinatario.getCiudad().toString())
@@ -59,7 +61,7 @@ public class RepositorioDestinatarioMySql implements RepositorioDestinatario {
     @Override
     public Destinatario optenerPorCedula(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("cedula", cedula);
+        parameterSource.addValue(cedulaa, cedula);
 
         try {
             return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
@@ -79,7 +81,7 @@ public class RepositorioDestinatarioMySql implements RepositorioDestinatario {
     @Override
     public boolean existe(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("cedula", cedula);
+        parameterSource.addValue(cedulaa, cedula);
         System.out.println(cedula + " existe");
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExiste, parameterSource, Boolean.class);
@@ -89,7 +91,7 @@ public class RepositorioDestinatarioMySql implements RepositorioDestinatario {
     public boolean existeExcluyendoId(Long id, String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", id);
-        parameterSource.addValue("cedula", cedula);
+        parameterSource.addValue(cedulaa, cedula);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId, parameterSource, Boolean.class);
     }
 }
