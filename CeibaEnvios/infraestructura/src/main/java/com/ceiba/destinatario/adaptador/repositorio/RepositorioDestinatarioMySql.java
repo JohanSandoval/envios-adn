@@ -82,7 +82,6 @@ public class RepositorioDestinatarioMySql implements RepositorioDestinatario {
     public boolean existe(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue(cedulaa, cedula);
-        System.out.println(cedula + " existe");
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExiste, parameterSource, Boolean.class);
     }

@@ -21,7 +21,6 @@ public class ManejadorActualizarDestinatario implements ManejadorComando<Comando
     @Override
     public void ejecutar(ComandoDestinatario comando) {
         Destinatario destinatario = this.fabricarDestinatario.crear(comando);
-        System.out.println(destinatario.toString());
         this.servicioActualizarDestinatario.ejecutar(destinatario);
     }
 }

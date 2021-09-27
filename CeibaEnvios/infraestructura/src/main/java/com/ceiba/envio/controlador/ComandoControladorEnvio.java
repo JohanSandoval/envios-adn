@@ -29,7 +29,6 @@ public class ComandoControladorEnvio {
 	@PostMapping
 	@ApiOperation("Crear Envio")
 	public ComandoRespuesta<Long> crear(@RequestBody ComandoEnvio comandoEnvio){
-		System.out.println("comando envio " + comandoEnvio.toString());
 		return manejadorCrearEnvio.ejecutar(comandoEnvio);
 	}
 
