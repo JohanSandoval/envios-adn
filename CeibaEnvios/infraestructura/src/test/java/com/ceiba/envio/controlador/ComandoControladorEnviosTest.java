@@ -35,7 +35,6 @@ public class ComandoControladorEnviosTest {
     public void crear() throws  Exception{
         //arrange
         ComandoEnvio comandoEnvio = new ComandoEnvioTestDataBuilder().build();
-
         //act -assert
         mockMvc.perform(post("/envios")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -50,7 +49,6 @@ public class ComandoControladorEnviosTest {
         Long id = 1L;
         ComandoEnvio comandoEnvio = new ComandoEnvioTestDataBuilder().conPeso(30D).build();
         System.out.println(comandoEnvio.toString());
-
         //act -assert
         mockMvc.perform(put("/envios/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON)

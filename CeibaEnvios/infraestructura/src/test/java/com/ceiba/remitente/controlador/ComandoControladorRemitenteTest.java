@@ -34,7 +34,6 @@ public class ComandoControladorRemitenteTest {
     public void crear() throws Exception{
         //arrange
         ComandoRemitente comandoRemitente = new ComandoRemitenteTestDataBuilder().build();
-
         //act - assert
         mockMvc.perform(post("/remitentes")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -48,7 +47,6 @@ public class ComandoControladorRemitenteTest {
         //arrange
         Long id = 1L;
         ComandoRemitente comandoRemitente = new ComandoRemitenteTestDataBuilder().conCedula("12345678").build();
-
         //act -assert
         mockMvc.perform(put("/remitentes/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON)

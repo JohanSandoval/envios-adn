@@ -9,6 +9,7 @@ public class ComandoEnvioTestDataBuilder {
     private String cedulaDestinatario;
     private double peso;
 
+
     public ComandoEnvioTestDataBuilder(){
         this.cedulaRemitente = "12345678";
         this.cedulaDestinatario = "87654321";

@@ -35,7 +35,6 @@ public class ComandoControladordestinatarioTest {
     public void crear() throws  Exception{
         //arrange
         ComandoDestinatario comandoDestinatario = new ComandoDestinatarioTestDataBuilder().build();
-
         //act - assert
         mockMvc.perform(post("/destinatarios")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -49,7 +48,6 @@ public class ComandoControladordestinatarioTest {
         //arrange
         String cedula = "87654321";
         ComandoDestinatario comandoDestinatario = new ComandoDestinatarioTestDataBuilder().build();
-
         //act -assert
         mockMvc.perform(put("/destinatarios/{cedula}", cedula)
                 .contentType(MediaType.APPLICATION_JSON)

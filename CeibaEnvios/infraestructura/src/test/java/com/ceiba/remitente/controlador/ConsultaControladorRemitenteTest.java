@@ -27,6 +27,7 @@ public class ConsultaControladorRemitenteTest {
     @Test
     public void listar() throws Exception{
         //arrange
+
         // act - assert
         mockMvc.perform(get("/remitentes")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -45,7 +46,6 @@ public class ConsultaControladorRemitenteTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(1)));
-
     }
 
 }

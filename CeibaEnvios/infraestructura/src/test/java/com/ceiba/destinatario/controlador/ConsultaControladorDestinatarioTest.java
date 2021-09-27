@@ -28,7 +28,6 @@ public class ConsultaControladorDestinatarioTest {
     @Test
     public void listar() throws Exception{
         //arrange
-
         //act - assert
         mockMvc.perform(get("/destinatarios")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -41,6 +40,7 @@ public class ConsultaControladorDestinatarioTest {
     public void listarByCedula() throws Exception{
         //arrange
         String cedula = "987654321";
+
         //act - assert
         mockMvc.perform(get("/destinatarios/{cedula}", cedula)
                         .contentType(MediaType.APPLICATION_JSON))
