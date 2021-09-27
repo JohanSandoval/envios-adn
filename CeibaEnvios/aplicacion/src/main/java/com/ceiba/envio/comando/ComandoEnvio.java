@@ -2,7 +2,10 @@ package com.ceiba.envio.comando;
 
 import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ComandoEnvio {
 
 	private Long id;

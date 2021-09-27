@@ -1,8 +1,11 @@
 package com.ceiba.destinatario.comando;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ComandoDestinatario {
 
     private Long id;

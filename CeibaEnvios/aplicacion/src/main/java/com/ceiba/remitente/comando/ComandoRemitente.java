@@ -1,8 +1,11 @@
 package com.ceiba.remitente.comando;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ComandoRemitente {
 
     private Long id;

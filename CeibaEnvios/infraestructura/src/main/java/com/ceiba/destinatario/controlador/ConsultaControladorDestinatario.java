@@ -30,7 +30,7 @@ public class ConsultaControladorDestinatario {
 
     @GetMapping(value = "/{cedula}")
     @ApiOperation("Buscar Destinatario")
-    public List<DtoDestinatario> listarById(@PathVariable String cedula){
+    public List<DtoDestinatario> listarByCedula(@PathVariable String cedula){
         return manejadorBuscarDestinatario.ejecutar(cedula);
     }
 }

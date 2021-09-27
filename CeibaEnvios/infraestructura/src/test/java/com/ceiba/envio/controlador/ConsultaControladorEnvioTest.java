@@ -1,4 +1,4 @@
-package com.ceiba.remitente.controlador;
+package com.ceiba.envio.controlador;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
@@ -18,8 +18,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ConsultaControladorRemitente.class)
-public class ConsultaControladorRemitenteTest {
+@WebMvcTest(ConsultaControladorEnvio.class)
+public class ConsultaControladorEnvioTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -28,24 +28,23 @@ public class ConsultaControladorRemitenteTest {
     public void listar() throws Exception{
         //arrange
         // act - assert
-        mockMvc.perform(get("/remitentes")
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/envios")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(1)));
     }
 
     @Test
-    public void listarByCedula() throws Exception{
+    public void listarById() throws Exception{
         //arrange
-        String cedula = "12345678";
+        Long id = 1L;
         //act - assert
-        mockMvc.perform(get("/remitentes/{cedula}", cedula)
+        mockMvc.perform(get("/envios/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(1)));
 
     }
-
 }
