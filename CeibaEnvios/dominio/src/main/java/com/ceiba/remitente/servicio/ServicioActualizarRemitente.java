@@ -20,7 +20,7 @@ public class ServicioActualizarRemitente {
     }
 
     public void validarExistenciaPrevia(Remitente remitente){
-        boolean existe = this.repositorioRemitente.existeExcluyendoId(remitente.getId(), remitente.getCedula());
+        boolean existe = this.repositorioRemitente.existe(remitente.getCedula());
         if(existe) {
             throw new ExcepcionDuplicidad(EL_REMITENTE_NO_ESTA_REGISTRADO);
         }
