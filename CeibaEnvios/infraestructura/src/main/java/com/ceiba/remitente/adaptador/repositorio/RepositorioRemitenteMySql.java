@@ -76,7 +76,6 @@ public class RepositorioRemitenteMySql implements RepositorioRemitente {
         }
     }
 
-
     @Override
     public boolean existe(String cedula) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();

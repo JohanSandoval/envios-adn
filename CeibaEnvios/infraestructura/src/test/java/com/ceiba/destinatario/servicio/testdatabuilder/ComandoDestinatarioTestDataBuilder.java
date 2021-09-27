@@ -14,7 +14,7 @@ public class ComandoDestinatarioTestDataBuilder {
     private String direccion;
 
     public ComandoDestinatarioTestDataBuilder() {
-        this.cedula = "87654321";
+        this.cedula = "98765678";
         this.nombre = UUID.randomUUID().toString();
         this.apellido = UUID.randomUUID().toString();
         this.ciudad = "MEDELLIN";
