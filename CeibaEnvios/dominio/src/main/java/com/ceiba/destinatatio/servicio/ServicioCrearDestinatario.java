@@ -20,7 +20,7 @@ public class ServicioCrearDestinatario {
     }
 
     public void validarExistenciaPrevia(Destinatario destinatario){
-        boolean existe = this.repositorioDestinatario.existe(destinatario.getNombre());
+        boolean existe = this.repositorioDestinatario.existe(destinatario.getCedula());
         if(existe) {
             throw new ExcepcionDuplicidad(EL_DESTINATARIO_YA_ESTA_REGISTRADO);
         }

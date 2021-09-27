@@ -13,7 +13,7 @@ import org.mockito.Mockito;
 public class ServicioCrearRemitenteTest {
 
     @Test
-    public void validarCiudadExistente(){
+    public void validarCiudadExistenteTest(){
         //arrange
         RemitenteTestDataBuilder remitenteTestDataBuilder = new RemitenteTestDataBuilder().conCiudad("CARTAGENA");
         //act - assert
@@ -21,7 +21,7 @@ public class ServicioCrearRemitenteTest {
     }
 
     @Test
-    public void validarExistenciaPreviaRemitente(){
+    public void validarExistenciaPreviaRemitenteTest(){
         //arrange
         Remitente remitente = new RemitenteTestDataBuilder().build();
         RepositorioRemitente repositorioRemitente = Mockito.mock(RepositorioRemitente.class);
