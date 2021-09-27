@@ -45,13 +45,11 @@ public class ComandoControladorEnviosTest {
                 .andExpect(content().json("{'valor': 2}"));
     }
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void  actualizar() throws Exception{
         //arrange
         Long id = 1L;
         ComandoEnvio comandoEnvio = new ComandoEnvioTestDataBuilder().conPeso(30D).build();
-        System.out.println(comandoEnvio.toString());
         //act -assert
         mockMvc.perform(put("/envios/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON)
