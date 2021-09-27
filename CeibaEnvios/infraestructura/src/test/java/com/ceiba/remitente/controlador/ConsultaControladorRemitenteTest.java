@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,6 +25,7 @@ public class ConsultaControladorRemitenteTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void listar() throws Exception{
         //arrange
@@ -36,6 +38,7 @@ public class ConsultaControladorRemitenteTest {
                 .andExpect(jsonPath("$[0].id", is(1)));
     }
 
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void listarByCedula() throws Exception{
         //arrange
