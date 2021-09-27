@@ -27,7 +27,6 @@ public class ConsultaControladorDestinatarioTest {
     @Autowired
     private MockMvc mockMvc;
 
-
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void listar() throws Exception{

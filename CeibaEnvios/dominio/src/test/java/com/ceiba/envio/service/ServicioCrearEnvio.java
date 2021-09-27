@@ -37,5 +37,10 @@ public class ServicioCrearEnvio {
         BasePrueba.assertThrows(() -> envioTestDataBuilder.build(), ExcepcionValorInvalido.class, "Se debe ingresar un peso menor a 50 kg");
     }
 
+    @Test
+    public void validarExistenciaRemitente(){
+        Remitente remitente = new RemitenteTestDataBuilder().conCedula("").build();
+    }
+
 
 }

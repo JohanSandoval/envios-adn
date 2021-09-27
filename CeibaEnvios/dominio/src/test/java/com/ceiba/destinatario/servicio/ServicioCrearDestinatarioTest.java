@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 public class ServicioCrearDestinatarioTest {
 
     @Test
-    public void validarCiudadExistente(){
+    public void validarCiudadExistenteTest(){
         //arrange
         DestinatarioTestDataBuilder destinatarioTestDataBuilder = new DestinatarioTestDataBuilder().conCiudad("CARTAGENA");
         //act - assert
@@ -25,7 +25,7 @@ public class ServicioCrearDestinatarioTest {
     }
 
     @Test
-    public void validarExistenciaPreviaDestinatario(){
+    public void validarExistenciaPreviaDestinatarioTest(){
         //arrange
         Destinatario destinatario = new DestinatarioTestDataBuilder().build();
         RepositorioDestinatario repositorioDestinatario = Mockito.mock(RepositorioDestinatario.class);
@@ -34,6 +34,7 @@ public class ServicioCrearDestinatarioTest {
         //act - assert
         BasePrueba.assertThrows(() -> servicioCrearDestinatario.ejecutar(destinatario), ExcepcionDuplicidad.class, "El destinatario ya esta registrado en el sistema");
     }
+
 
 
 }

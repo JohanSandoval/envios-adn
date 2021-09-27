@@ -20,7 +20,7 @@ public class ServicioActualizarDestinatario {
     }
 
     public void validarExistenciaPrevia(Destinatario destinatario){
-        boolean existe = this.repositorioDestinatario.existe(destinatario.getNombre());
+        boolean existe = this.repositorioDestinatario.existeExcluyendoId(destinatario.getId(), destinatario.getNombre());
         if(existe) {
             throw new ExcepcionDuplicidad(EL_DESTINATARIO_NO_ESTA_REGISTRADO);
         }
