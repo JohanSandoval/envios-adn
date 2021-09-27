@@ -16,7 +16,7 @@ public class ServicioActualizarRemitenteTest {
         //arrange
         Remitente remitente = new RemitenteTestDataBuilder().conId(1L).build();
         RepositorioRemitente repositorioRemitente = Mockito.mock(RepositorioRemitente.class);
-        Mockito.when(repositorioRemitente.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioRemitente.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(true);
         ServicioActualizarRemitente servicioActualizarRemitente = new ServicioActualizarRemitente(repositorioRemitente);
 
         //act - assert

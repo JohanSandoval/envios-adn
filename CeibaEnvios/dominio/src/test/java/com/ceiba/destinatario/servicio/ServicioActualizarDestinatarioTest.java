@@ -17,7 +17,7 @@ public class ServicioActualizarDestinatarioTest {
         //arrange
         Destinatario destinatario = new DestinatarioTestDataBuilder().build();
         RepositorioDestinatario repositorioDestinatario = Mockito.mock(RepositorioDestinatario.class);
-        Mockito.when(repositorioDestinatario.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioDestinatario.existeExcluyendoId(Mockito.anyLong(), Mockito.anyString())).thenReturn(true);
         ServicioActualizarDestinatario servicioActualizarDestinatario = new ServicioActualizarDestinatario(repositorioDestinatario);
 
         //act - assert
