@@ -32,7 +32,7 @@ public class ComandoControladorEnviosTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void crear() throws  Exception{
         //arrange
@@ -45,7 +45,7 @@ public class ComandoControladorEnviosTest {
                 .andExpect(content().json("{'valor': 2}"));
     }
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void  actualizar() throws Exception{
         //arrange
