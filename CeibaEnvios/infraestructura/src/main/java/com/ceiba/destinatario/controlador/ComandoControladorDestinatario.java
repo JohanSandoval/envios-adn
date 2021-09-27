@@ -33,6 +33,7 @@ public class ComandoControladorDestinatario {
     @ApiOperation("Actualizar destinatario")
     public void actualizar(@RequestBody ComandoDestinatario comandoDestinatario, @PathVariable Long id){
         comandoDestinatario.setId(id);
+        System.out.println(id);
         this.manejadorActualizarDestinatario.ejecutar(comandoDestinatario);
     }
 }

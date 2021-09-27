@@ -6,7 +6,6 @@ import com.ceiba.destinatatio.servicio.ServicioCrearDestinatario;
 import com.ceiba.envio.puerto.repositorio.RepositorioEnvio;
 import com.ceiba.envio.servicio.ServicioActualizarEnvio;
 import com.ceiba.envio.servicio.ServicioCrearEnvio;
-import com.ceiba.envio.servicio.ServicioEliminarEnvio;
 import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
 import com.ceiba.remitente.servicio.ServicioActualizarRemitente;
 import com.ceiba.remitente.servicio.ServicioCrearRemitente;
@@ -19,11 +18,6 @@ public class BeanServicio {
 	@Bean
 	public ServicioCrearEnvio servicioCrearEnvio(RepositorioEnvio repositorioEnvio) {
 		return new ServicioCrearEnvio(repositorioEnvio);
-	}
-
-	@Bean
-	public ServicioEliminarEnvio servicioEliminarEnvio(RepositorioEnvio repositorioEnvio) {
-		return new ServicioEliminarEnvio(repositorioEnvio);
 	}
 
 	@Bean

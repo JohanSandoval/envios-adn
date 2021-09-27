@@ -1,5 +1,6 @@
 package com.ceiba.envio.controlador;
 
+import com.ceiba.envio.comando.manejador.ManejadorActualizarEnvio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,15 +17,26 @@ import io.swagger.annotations.ApiOperation;
 public class ComandoControladorEnvio {
 
 	private final ManejadorCrearEnvio manejadorCrearEnvio;
+	private final ManejadorActualizarEnvio manejadorActualizarEnvio;
+
 
 	@Autowired
-	public ComandoControladorEnvio(ManejadorCrearEnvio manejadorCrearEnvio) {
+	public ComandoControladorEnvio(ManejadorCrearEnvio manejadorCrearEnvio, ManejadorActualizarEnvio manejadorActualizarEnvio) {
 		this.manejadorCrearEnvio = manejadorCrearEnvio;
+		this.manejadorActualizarEnvio = manejadorActualizarEnvio;
 	}
 	
 	@PostMapping
 	@ApiOperation("Crear Envio")
 	public ComandoRespuesta<Long> crear(@RequestBody ComandoEnvio comandoEnvio){
+		System.out.println("comando envio " + comandoEnvio.toString());
 		return manejadorCrearEnvio.ejecutar(comandoEnvio);
+	}
+
+	@PutMapping(value = "/{id}")
+	@ApiOperation("Actualizar Envio")
+	public void actualizar(@RequestBody ComandoEnvio comandoEnvio, @PathVariable Long id){
+		comandoEnvio.setId(id);
+		manejadorActualizarEnvio.ejecutar(comandoEnvio);
 	}
 }

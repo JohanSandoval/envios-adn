@@ -22,6 +22,6 @@ public class ManejadorCrearDestinatario implements ManejadorComandoRespuesta<Com
 
     public ComandoRespuesta<Long> ejecutar(ComandoDestinatario comandoDestinatario){
         Destinatario destinatario = this.fabricarDestinatario.crear(comandoDestinatario);
-        return  new ComandoRespuesta<>(this.servicioCrearDestinatario.ejecutar(destinatario));
+        return new ComandoRespuesta<>(this.servicioCrearDestinatario.ejecutar(destinatario));
     }
 }

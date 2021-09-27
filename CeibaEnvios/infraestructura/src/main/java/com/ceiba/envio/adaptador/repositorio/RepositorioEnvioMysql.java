@@ -18,6 +18,9 @@ public class RepositorioEnvioMysql implements RepositorioEnvio {
 	@SqlStatement(namespace = "envio", value = "crear")
 	private static String sqlCrear;
 
+	@SqlStatement(namespace = "envio", value = "actualizar")
+	private static String sqlActualizar;
+
 	@Autowired
 	public RepositorioEnvioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
 		this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -25,6 +28,7 @@ public class RepositorioEnvioMysql implements RepositorioEnvio {
 
 	private SqlParameterSource obtenerParametrosEnvio(Envio envio){
 		return  new MapSqlParameterSource()
+				.addValue("id",envio.getId())
 				.addValue("idRemitente", envio.getRemitente().getId())
 				.addValue("idDestinatario", envio.getDestinatario().getId())
 				.addValue("peso", envio.getPeso())
@@ -40,13 +44,9 @@ public class RepositorioEnvioMysql implements RepositorioEnvio {
 
 	@Override
 	public void actualizar(Envio envio) {
-		// TODO Auto-generated method stub
+		SqlParameterSource parameterSource = this.obtenerParametrosEnvio(envio);
+		this.customNamedParameterJdbcTemplate.actualizar(parameterSource, sqlActualizar);
 	}
 
-	@Override
-	public void eliminar(Long id) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

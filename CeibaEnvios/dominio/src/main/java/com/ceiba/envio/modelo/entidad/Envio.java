@@ -37,7 +37,7 @@ public class Envio {
 	private BigDecimal costo;
 	private LocalDate fechaEstimadaLlegada;
 
-	public Envio(Remitente remitente, Destinatario destinatario, double peso){
+	public Envio(Long id, Remitente remitente, Destinatario destinatario, double peso){
 
 		validarObligatorio(remitente, REMITENTE_OBLIGATORIO);
 		validarObligatorio(destinatario, DESTINARTARIO_OBLIGATORIO);
@@ -45,6 +45,7 @@ public class Envio {
 		validarMenor((long) peso, PESO_MAXIMO, PESO_MENOR_50);
 		validarPositivo(peso, PESO_MAYOR_0);
 
+		this.id = id;
 		this.remitente = remitente;
 		this.destinatario = destinatario;
 		this.peso = peso;

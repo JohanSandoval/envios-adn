@@ -19,6 +19,7 @@ public class FabricarEnvio {
 		Destinatario destinatario = repositorioDestinatario.optenerPorCedula(comandoEnvio.getCedulaDestinatario());
 
 		return new Envio(
+				comandoEnvio.getId(),
 				remitente,
 				destinatario,
 				comandoEnvio.getPeso());

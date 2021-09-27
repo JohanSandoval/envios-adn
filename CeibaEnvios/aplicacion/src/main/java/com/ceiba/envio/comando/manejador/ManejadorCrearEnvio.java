@@ -29,6 +29,7 @@ public class ManejadorCrearEnvio implements ManejadorComandoRespuesta<ComandoEnv
 
 	public ComandoRespuesta<Long> ejecutar(ComandoEnvio comandoEnvio) {
 		Envio envio = this.fabricarEnvio.crear(comandoEnvio, this.repositorioRemitente, this.repositorioDestinatario);
+		System.out.println(envio.toString());
 		return new ComandoRespuesta<>(this.servicioCrearEnvio.ejecutar(envio));
 	}
 }
