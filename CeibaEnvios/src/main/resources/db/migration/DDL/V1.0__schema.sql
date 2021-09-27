@@ -8,7 +8,7 @@ create table if not exists usuario (
 
 CREATE TABLE destinatario (
   id int(11) NOT NULL auto_increment,
-  cedula int(11) NOT NULL,
+  cedula varchar(45) NOT NULL,
   nombre varchar(45) NOT NULL,
   apellido varchar(45) NOT NULL,
   ciudad varchar(45) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE destinatario (
 
 CREATE TABLE remitente (
   id int(11) NOT NULL auto_increment,
-  cedula int(11) NOT NULL,
+  cedula varchar(45) NOT NULL,
   nombre varchar(45) NOT NULL,
   apellido varchar(45) NOT NULL,
   ciudad varchar(45) NOT NULL,
@@ -31,7 +31,7 @@ id int(11) not null auto_increment,
 id_remitente int(11) not null,
 id_destinatario int(11) not null,
 peso double not null,
-costo double(11,0) not null,
+costo double not null,
 fecha_llegada datetime not null,
 primary key (id),
 foreign key (id_remitente) references remitente(id),
