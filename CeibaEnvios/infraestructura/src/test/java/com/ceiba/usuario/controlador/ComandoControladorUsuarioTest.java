@@ -30,7 +30,6 @@ public class ComandoControladorUsuarioTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void crear() throws Exception{
         //arrange
@@ -43,11 +42,10 @@ public class ComandoControladorUsuarioTest {
                 .andExpect(content().json("{'valor': 2}"));
     }
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     @Test
     public void actualizar() throws Exception{
         //arrange
-        Long id = 1l;
+        Long id = 1L;
         ComandoUsuario comandoUsuario = new ComandoUsuarioTestDataBuilder().conCiudad(2L).build();
         //act - assert
         mockMvc.perform(put("/usuario/{id}", id)

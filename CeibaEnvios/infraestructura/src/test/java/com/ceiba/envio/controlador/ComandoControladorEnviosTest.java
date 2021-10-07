@@ -43,6 +43,7 @@ public class ComandoControladorEnviosTest {
                 .andExpect(content().json("{'valor': 2}"));
     }
 
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void  actualizar() throws Exception{
         //arrange

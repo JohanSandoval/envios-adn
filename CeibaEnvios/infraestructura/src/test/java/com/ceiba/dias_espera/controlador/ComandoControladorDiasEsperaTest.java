@@ -30,7 +30,6 @@ public class ComandoControladorDiasEsperaTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void crear() throws Exception{
         //arrange
@@ -43,7 +42,6 @@ public class ComandoControladorDiasEsperaTest {
                 .andExpect(content().json("{'valor': 2}"));
     }
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     @Test
     public void actualizar() throws Exception{
         //arrange
