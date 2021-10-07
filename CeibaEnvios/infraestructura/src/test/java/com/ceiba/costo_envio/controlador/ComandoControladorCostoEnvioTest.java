@@ -51,7 +51,7 @@ public class ComandoControladorCostoEnvioTest {
         //arrange
         Long id = 1L;
         BigDecimal costo = new BigDecimal(4750);
-        ComandoCostoEnvio comandoCostoEnvio = new ComandoCostoEnvioTestDataBuilder().conPesoMin(10D).conPesoMax(20D).conCosto(costo).build();
+        ComandoCostoEnvio comandoCostoEnvio = new ComandoCostoEnvioTestDataBuilder().conPesoMin(1D).conPesoMax(9.9D).conCosto(costo).build();
         //act - assert
         mockMvc.perform(put("/costoEnvio/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON)

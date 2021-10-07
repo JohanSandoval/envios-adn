@@ -12,7 +12,7 @@ public class ComandoCostoEnvioTestDataBuilder {
     private BigDecimal costo;
 
     public ComandoCostoEnvioTestDataBuilder() {
-        this.pesoMin = 1D;
+        this.pesoMin = 0.1D;
         this.pesoMax = 10D;
         this.costo =  new BigDecimal(5000);
     }

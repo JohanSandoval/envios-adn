@@ -32,7 +32,7 @@ public class ComandoControladorEnviosTest {
 
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
-    public void crear() throws  Exception{
+    public void crear() throws Exception{
         //arrange
         ComandoEnvio comandoEnvio = new ComandoEnvioTestDataBuilder().build();
         //act -assert
