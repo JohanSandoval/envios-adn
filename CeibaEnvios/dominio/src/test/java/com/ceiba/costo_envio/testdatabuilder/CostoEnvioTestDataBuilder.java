@@ -44,7 +44,7 @@ public class CostoEnvioTestDataBuilder {
     }
 
     public CostoEnvio build(){
-        return new CostoEnvio(id, pesoMax, pesoMin, costo);
+        return new CostoEnvio(id, pesoMin, pesoMax, costo);
     }
 
 }
