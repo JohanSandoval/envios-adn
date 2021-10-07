@@ -20,6 +20,11 @@ public class ComandoUsuarioTestDataBuilder {
         this.telefono = "1112223";
     }
 
+    public ComandoUsuarioTestDataBuilder conCedula(String cedula){
+        this.cedula = cedula;
+        return this;
+    }
+
     public ComandoUsuarioTestDataBuilder conCiudad(Long ciudad){
         this.ciudad = ciudad;
         return this;

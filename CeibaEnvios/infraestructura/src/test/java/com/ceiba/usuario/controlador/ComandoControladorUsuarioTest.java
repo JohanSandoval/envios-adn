@@ -29,7 +29,8 @@ public class ComandoControladorUsuarioTest {
 
     @Autowired
     private MockMvc mockMvc;
-    
+
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void crear() throws Exception{
         //arrange
@@ -46,7 +47,7 @@ public class ComandoControladorUsuarioTest {
     public void actualizar() throws Exception{
         //arrange
         Long id = 1L;
-        ComandoUsuario comandoUsuario = new ComandoUsuarioTestDataBuilder().conCiudad(2L).build();
+        ComandoUsuario comandoUsuario = new ComandoUsuarioTestDataBuilder().conCiudad(2L).conCedula("12345678").build();
         //act - assert
         mockMvc.perform(put("/usuario/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON)
