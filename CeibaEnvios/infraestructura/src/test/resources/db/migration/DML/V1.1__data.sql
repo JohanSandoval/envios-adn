@@ -1,8 +1,14 @@
-INSERT INTO remitente (cedula, nombre, apellido, ciudad, telefono)
-    VALUES ('12345678', 'R nombre', 'R apellido', 'BOGOTA', '55555');
+INSERT INTO ciudad (nombre) values('BOGOTA');
+INSERT INTO ciudad (nombre) values('CARTAGENA');
 
-INSERT INTO destinatario (cedula, nombre, apellido, ciudad, direccion)
-    VALUES ('87654321', 'D nombre', 'D apellido', 'CALI', 'D direccion');
+INSERT INTO dias_espera (id_ciudad_origen, id_ciudad_destino, dias)
+     VALUES (1,1,1);
 
-INSERT INTO envio (id_remitente, id_destinatario, peso, costo, fecha_llegada)
-    VALUES (1, 1, 15, 4750, now());
+INSERT INTO usuario (cedula, nombre, apellido, id_ciudad, telefono)
+    VALUES ('12345678', 'Karla', 'Lopez', 1, '5555555');
+
+INSERT INTO costo_envio (peso_maximo, peso_minimo, costo)
+    VALUES (10, 0.1, 5000);
+
+INSERT INTO envio (id_usuario_remitente, id_usuario_destinatario, peso, costo, fecha_llegada, direccion)
+    VALUES (1, 1, 6, 30000, NOW(), 'CALLE 75 A SUR');

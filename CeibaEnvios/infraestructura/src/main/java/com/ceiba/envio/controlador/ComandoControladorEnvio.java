@@ -3,25 +3,23 @@ package com.ceiba.envio.controlador;
 import com.ceiba.envio.comando.manejador.ManejadorActualizarEnvio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.envio.comando.ComandoEnvio;
 import com.ceiba.envio.comando.manejador.ManejadorCrearEnvio;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/envios")
+@RequestMapping("/envio")
 @Api(tags = { "Controlador comando envio"})
 public class ComandoControladorEnvio {
 
 	private final ManejadorCrearEnvio manejadorCrearEnvio;
 	private final ManejadorActualizarEnvio manejadorActualizarEnvio;
 
-
 	@Autowired
-	public ComandoControladorEnvio(ManejadorCrearEnvio manejadorCrearEnvio, ManejadorActualizarEnvio manejadorActualizarEnvio) {
+	public ComandoControladorEnvio(ManejadorCrearEnvio manejadorCrearEnvio,
+								   ManejadorActualizarEnvio manejadorActualizarEnvio) {
 		this.manejadorCrearEnvio = manejadorCrearEnvio;
 		this.manejadorActualizarEnvio = manejadorActualizarEnvio;
 	}

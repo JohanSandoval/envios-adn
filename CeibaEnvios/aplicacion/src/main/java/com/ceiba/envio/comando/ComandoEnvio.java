@@ -12,4 +12,5 @@ public class ComandoEnvio {
 	private String cedulaRemitente;
 	private String cedulaDestinatario;
 	private double peso;
+	private String direccion;
 }

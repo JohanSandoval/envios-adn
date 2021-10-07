@@ -3,8 +3,6 @@ package com.ceiba.envio.controlador;
 import com.ceiba.ApplicationMock;
 import com.ceiba.envio.comando.ComandoEnvio;
 import com.ceiba.envio.servicio.testdatabuilder.ComandoEnvioTestDataBuilder;
-import com.ceiba.remitente.comando.ComandoRemitente;
-import com.ceiba.remitente.servicio.testdatabuilder.ComandoRemitenteTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -38,7 +36,7 @@ public class ComandoControladorEnviosTest {
         //arrange
         ComandoEnvio comandoEnvio = new ComandoEnvioTestDataBuilder().build();
         //act -assert
-        mockMvc.perform(post("/envios")
+        mockMvc.perform(post("/envio")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoEnvio)))
                 .andExpect(status().isOk())
@@ -49,9 +47,9 @@ public class ComandoControladorEnviosTest {
     public void  actualizar() throws Exception{
         //arrange
         Long id = 1L;
-        ComandoEnvio comandoEnvio = new ComandoEnvioTestDataBuilder().conPeso(30D).build();
+        ComandoEnvio comandoEnvio = new ComandoEnvioTestDataBuilder().conPeso(3D).build();
         //act -assert
-        mockMvc.perform(put("/envios/{id}", id)
+        mockMvc.perform(put("/envio/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoEnvio)))
                 .andExpect(status().isOk());

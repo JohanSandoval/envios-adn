@@ -1,7 +1,6 @@
 package com.ceiba.envio.modelo.dto;
 
-import com.ceiba.destinatatio.modelo.dto.DtoDestinatario;
-import com.ceiba.remitente.modelo.dto.DtoRemitente;
+import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,11 +12,12 @@ import java.time.LocalDate;
 public class DtoEnvio {
 
 	private Long id;
-	private DtoRemitente remitente;
-	private DtoDestinatario destinatario;
+	private DtoUsuario remitente;
+	private DtoUsuario destinatario;
 	private double peso;
 
 	private BigDecimal costo;
 	private LocalDate fechaEstimadaLlegada;
+	private String direccion;
 
 }

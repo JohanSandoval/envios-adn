@@ -1,0 +1,1 @@
+SELECT COUNT(1) FROM ciudad WHERE nombre = :nombre;

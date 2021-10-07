@@ -1,0 +1,1 @@
+SELECT id, nombre from ciudad WHERE id = :id

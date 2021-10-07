@@ -15,7 +15,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/envios")
+@RequestMapping("/envio")
 @Api(tags = {"Controlador consulta envio"})
 public class ConsultaControladorEnvio {
 

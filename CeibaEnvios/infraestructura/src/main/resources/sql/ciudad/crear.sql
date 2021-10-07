@@ -1,0 +1,1 @@
+INSERT INTO ciudad (nombre) values (:nombre)

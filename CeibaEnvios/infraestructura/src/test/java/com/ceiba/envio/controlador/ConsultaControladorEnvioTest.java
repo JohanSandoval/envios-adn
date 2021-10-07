@@ -31,7 +31,7 @@ public class ConsultaControladorEnvioTest {
     public void listar() throws Exception{
         //arrange
         // act - assert
-        mockMvc.perform(get("/envios")
+        mockMvc.perform(get("/envio")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 //.andExpect(jsonPath("$", hasSize(1)))
@@ -44,7 +44,7 @@ public class ConsultaControladorEnvioTest {
         //arrange
         Long id = 1L;
         //act - assert
-        mockMvc.perform(get("/envios/{id}", id)
+        mockMvc.perform(get("/envio/{id}", id)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))

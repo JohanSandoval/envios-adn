@@ -1,9 +1,6 @@
 package com.ceiba.envio.modelo.entidad;
 
-import com.ceiba.destinatatio.modelo.entidad.Destinatario;
-import com.ceiba.enumeraciones.Ciudad;
-import com.ceiba.enumeraciones.CostoPorPeso;
-import com.ceiba.remitente.modelo.entidad.Remitente;
+import com.ceiba.usuario.modelo.entidad.Usuario;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -17,11 +14,11 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 @ToString
 public class Envio {
 
-	private static final String REMITENTE_OBLIGATORIO = "Se debe ingresar un remitente nose";
+	private static final String REMITENTE_OBLIGATORIO = "Se debe ingresar un remitente";
 	private static final String DESTINARTARIO_OBLIGATORIO = "Se debe ingresar destinatario";
 
 	private static final String PESO_OBLIGATORIO = "Se debe ingresar un peso";
-	private static final String PESO_MENOR_50 = "Se debe ingresar un peso menor a 50 kg";
+	private static final String PESO_MENOR_50 = "Se debe ingresar un peso maximo a 50 kg";
 	private static final String PESO_MAYOR_0 = "Se debe ingresar un peso positivo";
 
 	private static final String COSTO_OBLIGATORIO = "se debe de ingresar un costo";
@@ -30,14 +27,17 @@ public class Envio {
 	private static final Long PESO_MAXIMO = 50L;
 
 	private Long id;
-	private Remitente remitente;
-	private Destinatario destinatario;
+	private Usuario remitente;
+	private Usuario destinatario;
 	private double peso;
 
 	private BigDecimal costo;
 	private LocalDate fechaEstimadaLlegada;
+	private String direccion;
 
-	public Envio(Long id, Remitente remitente, Destinatario destinatario, double peso){
+
+
+	public Envio(Long id, Usuario remitente, Usuario destinatario, double peso, BigDecimal costo, Double diasEspera, String direccion){
 
 		validarObligatorio(remitente, REMITENTE_OBLIGATORIO);
 		validarObligatorio(destinatario, DESTINARTARIO_OBLIGATORIO);
@@ -49,54 +49,13 @@ public class Envio {
 		this.remitente = remitente;
 		this.destinatario = destinatario;
 		this.peso = peso;
-		this.obtenerCosto(peso);
-		this.fechaEstimadaLlegada = calcularFecha(remitente.getCiudad(), destinatario.getCiudad());
+		this.costo = calcularCosto(peso, costo);
+		this.fechaEstimadaLlegada = calcularFechaLlegada(diasEspera);
+		this.direccion = direccion;
+
 	}
 
-	private LocalDate calcularFecha(Ciudad origen, Ciudad destino){
-		int diasHabiles = calcularDiasHabiles(origen, destino);
-		return calcularFechaLlegada(diasHabiles);
-	}
-
-	private int calcularDiasHabiles(Ciudad ciudadOrigen, Ciudad ciudadDestino){
-		int diasHabilesEnvio = 0;
-
-		switch (ciudadOrigen) {
-			case BOGOTA:
-				if(ciudadDestino.equals(Ciudad.BOGOTA)){
-					diasHabilesEnvio = 2;
-				}else if(ciudadDestino.equals(Ciudad.CALI)){
-					diasHabilesEnvio = 3;
-				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
-					diasHabilesEnvio = 5;
-				}
-				break;
-			case MEDELLIN:
-				if(ciudadDestino.equals(Ciudad.BOGOTA)){
-					diasHabilesEnvio = 5;
-				}else if(ciudadDestino.equals(Ciudad.CALI)){
-					diasHabilesEnvio = 3;
-				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
-					diasHabilesEnvio = 2;
-				}
-				break;
-			case CALI:
-				if(ciudadDestino.equals(Ciudad.BOGOTA)){
-					diasHabilesEnvio = 3;
-				}else if(ciudadDestino.equals(Ciudad.CALI)){
-					diasHabilesEnvio = 2;
-				}else if (ciudadDestino.equals(Ciudad.MEDELLIN)){
-					diasHabilesEnvio = 3;
-				}
-				break;
-			default:
-				diasHabilesEnvio = 0;
-				break;
-		}
-		return diasHabilesEnvio;
-	}
-
-	private LocalDate calcularFechaLlegada(int diasHabiles){
+	private LocalDate calcularFechaLlegada(Double diasHabiles){
 		LocalDate result = LocalDate.now();
 		int addedDays = 0;
 		while (addedDays < diasHabiles) {
@@ -108,30 +67,8 @@ public class Envio {
 		return result;
 	}
 
-	private CostoPorPeso calcularPresioKl(Double peso){
-
-		CostoPorPeso costoPorPeso = CostoPorPeso.MAYOR_O_MENOR_10;
-
-		if(peso >= 10){
-			costoPorPeso = CostoPorPeso.MAYOR_IGUAL_10_MENOR_20;
-		}
-
-		if(peso >= 20){
-			costoPorPeso = CostoPorPeso.MAYOR_IGUAL_20_MENOR_30;
-		}
-		if(peso >= 30){
-			costoPorPeso = CostoPorPeso.MAYOR_IGUAL_30_MENOR_40;
-		}
-		if(peso >= 40){
-			costoPorPeso = CostoPorPeso.MAYOR_IGUAL_40_MENOR_50;
-		}
-		return costoPorPeso;
+	private BigDecimal calcularCosto(Double peso, BigDecimal costo){
+		BigDecimal pesoEnvio = new BigDecimal(peso);
+		return costo.multiply(pesoEnvio) ;
 	}
-
-	private void obtenerCosto(double peso){
-		CostoPorPeso costoPorPeso = this.calcularPresioKl(peso);
-		this.costo = costoPorPeso.calcularCosto(peso);
-	}
-
-
 }

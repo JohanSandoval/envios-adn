@@ -62,6 +62,11 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
+    public static void validarMenor(Double numeroInicial, Double numeroFinal, String mensaje) {
+        if (numeroInicial > numeroFinal) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
 
     public static void validarRegex(String correoElectronico, String regex, String mensaje) {
         Pattern pattern = Pattern.compile(regex);

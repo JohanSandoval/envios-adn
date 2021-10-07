@@ -33,7 +33,8 @@ public class RepositorioEnvioMysql implements RepositorioEnvio {
 				.addValue("idDestinatario", envio.getDestinatario().getId())
 				.addValue("peso", envio.getPeso())
 				.addValue("costo", envio.getCosto())
-				.addValue("fechaLlegada", envio.getFechaEstimadaLlegada());
+				.addValue("fechaLlegada", envio.getFechaEstimadaLlegada())
+				.addValue("direccion", envio.getDireccion());
 	}
 
 	@Override
@@ -47,6 +48,4 @@ public class RepositorioEnvioMysql implements RepositorioEnvio {
 		SqlParameterSource parameterSource = this.obtenerParametrosEnvio(envio);
 		this.customNamedParameterJdbcTemplate.actualizar(parameterSource, sqlActualizar);
 	}
-
-
 }

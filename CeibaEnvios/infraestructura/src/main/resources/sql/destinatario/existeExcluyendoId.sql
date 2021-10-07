@@ -1,1 +1,0 @@
-select count(1) from destinatario where id <> :id and cedula = :cedula;

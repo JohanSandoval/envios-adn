@@ -1,1 +1,0 @@
-SELECT count(1) FROM remitente WHERE cedula = :cedula;

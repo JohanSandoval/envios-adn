@@ -1,9 +1,11 @@
 package com.ceiba.envio.comando.fabrica;
 
-import com.ceiba.destinatatio.modelo.entidad.Destinatario;
-import com.ceiba.destinatatio.puerto.repositorio.RepositorioDestinatario;
-import com.ceiba.remitente.modelo.entidad.Remitente;
-import com.ceiba.remitente.puerto.repositorio.RepositorioRemitente;
+import com.ceiba.costo_envio.modelo.entidad.CostoEnvio;
+import com.ceiba.costo_envio.puerto.repositorio.RepositorioCostoEnvio;
+import com.ceiba.dias_espera.modelo.entidad.DiasEspera;
+import com.ceiba.dias_espera.puerto.repositorio.RepositorioDiasEspera;
+import com.ceiba.usuario.modelo.entidad.Usuario;
+import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.envio.comando.ComandoEnvio;
@@ -12,17 +14,22 @@ import com.ceiba.envio.modelo.entidad.Envio;
 @Component
 public class FabricarEnvio {
 
-	public Envio crear(ComandoEnvio comandoEnvio, RepositorioRemitente repositorioRemitente,
-					   RepositorioDestinatario repositorioDestinatario) {
+	public Envio crear(ComandoEnvio comandoEnvio, RepositorioUsuario repositorioUsuario,
+					   RepositorioCostoEnvio repositorioCostoEnvio, RepositorioDiasEspera repositorioDiasEspera) {
 
-		Remitente remitente = repositorioRemitente.optenerPorCedula(comandoEnvio.getCedulaRemitente());
-		Destinatario destinatario = repositorioDestinatario.optenerPorCedula(comandoEnvio.getCedulaDestinatario());
+		Usuario remitente = repositorioUsuario.optenerPorCedula(comandoEnvio.getCedulaRemitente());
+		Usuario destinatario = repositorioUsuario.optenerPorCedula(comandoEnvio.getCedulaDestinatario());
+		CostoEnvio costoEnvio = repositorioCostoEnvio.optenerPorPeso(comandoEnvio.getPeso());
+		DiasEspera diasEspera = repositorioDiasEspera.optenerPorId(remitente.getCiudad().getId(), destinatario.getCiudad().getId());
 
 		return new Envio(
 				comandoEnvio.getId(),
 				remitente,
 				destinatario,
-				comandoEnvio.getPeso());
+				comandoEnvio.getPeso(),
+				costoEnvio.getCosto(),
+				diasEspera.getDias(),
+				comandoEnvio.getDireccion());
 	}
 	
 }

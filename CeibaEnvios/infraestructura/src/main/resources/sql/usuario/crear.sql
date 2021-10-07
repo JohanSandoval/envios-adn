@@ -1,1 +1,8 @@
-insert into usuario (nombre, clave,fecha_creacion) values (:nombre, :clave, :fechaCreacion)
+insert into usuario (
+    cedula,
+    nombre,
+    apellido,
+    id_ciudad,
+    telefono)
+values
+    (:cedula, :nombre, :apellido, :ciudad, :telefono);

@@ -8,12 +8,14 @@ public class ComandoEnvioTestDataBuilder {
     private String cedulaRemitente;
     private String cedulaDestinatario;
     private double peso;
+    private String direccion;
 
 
     public ComandoEnvioTestDataBuilder(){
         this.cedulaRemitente = "12345678";
-        this.cedulaDestinatario = "87654321";
-        this.peso = 10;
+        this.cedulaDestinatario = "12345678";
+        this.peso = 7;
+        this.direccion = "Av 75 a sur";
     }
 
     public ComandoEnvioTestDataBuilder conCedulaRemitente(String cedulaRemitente){
@@ -37,6 +39,6 @@ public class ComandoEnvioTestDataBuilder {
     }
 
     public ComandoEnvio build(){
-        return new ComandoEnvio(id, cedulaRemitente, cedulaDestinatario, peso);
+        return new ComandoEnvio(id, cedulaRemitente, cedulaDestinatario, peso, direccion);
     }
 }
