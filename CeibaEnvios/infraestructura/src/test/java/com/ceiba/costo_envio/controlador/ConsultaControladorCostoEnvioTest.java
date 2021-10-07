@@ -27,6 +27,7 @@ public class ConsultaControladorCostoEnvioTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void listar() throws Exception{
         //arrange
@@ -37,6 +38,7 @@ public class ConsultaControladorCostoEnvioTest {
                 .andExpect(jsonPath("$[0].id", is(1)));
     }
 
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     @Test
     public void listarById() throws Exception{
         //arrange
