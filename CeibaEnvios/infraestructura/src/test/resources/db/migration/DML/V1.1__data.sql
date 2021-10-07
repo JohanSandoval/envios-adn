@@ -1,5 +1,5 @@
 INSERT INTO ciudad (nombre) values('BOGOTA');
-INSERT INTO ciudad (nombre) values('CARTAGENA');
+INSERT INTO ciudad (nombre) values('CALI');
 
 INSERT INTO dias_espera (id_ciudad_origen, id_ciudad_destino, dias)
      VALUES (1,1,1);

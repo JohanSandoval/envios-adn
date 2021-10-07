@@ -47,7 +47,7 @@ public class ComandoControladorCiudadTest {
     @Test
     public void actualizar() throws Exception{
         //arrange
-        Long id = 1L;
+        Long id = 2L;
         ComandoCiudad comandoCiudad = new ComandoCiudadTestDataBuilder().conNombre("MEDELLIN").build();
         //act - assert
         mockMvc.perform(put("/ciudad/{id}", id)
