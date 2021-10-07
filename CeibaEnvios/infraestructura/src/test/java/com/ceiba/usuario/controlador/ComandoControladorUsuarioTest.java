@@ -29,8 +29,7 @@ public class ComandoControladorUsuarioTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+    
     @Test
     public void crear() throws Exception{
         //arrange
