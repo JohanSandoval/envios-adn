@@ -3,7 +3,6 @@ package com.ceiba.costo_envio.comando.manejador;
 import com.ceiba.costo_envio.comando.ComandoCostoEnvio;
 import com.ceiba.costo_envio.comando.fabricar.FabricarCostoEnvio;
 import com.ceiba.costo_envio.modelo.entidad.CostoEnvio;
-import com.ceiba.costo_envio.puerto.repositorio.RepositorioCostoEnvio;
 import com.ceiba.costo_envio.servicio.ServicioActualizarCostoEnvio;
 import com.ceiba.manejador.ManejadorComando;
 import org.springframework.stereotype.Component;
@@ -13,14 +12,11 @@ public class ManejadorActualizarCostoEnvio implements ManejadorComando<ComandoCo
 
     private final FabricarCostoEnvio fabricarCostoEnvio;
     private final ServicioActualizarCostoEnvio servicioActualizarCostoEnvio;
-    private final RepositorioCostoEnvio repositorioCostoEnvio;
 
-    public ManejadorActualizarCostoEnvio(FabricarCostoEnvio fabricarCostoEnvio,
-                                         ServicioActualizarCostoEnvio servicioActualizarCostoEnvio,
-                                         RepositorioCostoEnvio repositorioCostoEnvio) {
+
+    public ManejadorActualizarCostoEnvio(FabricarCostoEnvio fabricarCostoEnvio, ServicioActualizarCostoEnvio servicioActualizarCostoEnvio) {
         this.fabricarCostoEnvio = fabricarCostoEnvio;
         this.servicioActualizarCostoEnvio = servicioActualizarCostoEnvio;
-        this.repositorioCostoEnvio = repositorioCostoEnvio;
     }
 
     @Override

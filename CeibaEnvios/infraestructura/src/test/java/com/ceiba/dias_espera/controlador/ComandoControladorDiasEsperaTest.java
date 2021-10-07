@@ -41,7 +41,7 @@ public class ComandoControladorDiasEsperaTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 2}"));
     }
-    
+
     @Test
     public void actualizar() throws Exception{
         //arrange

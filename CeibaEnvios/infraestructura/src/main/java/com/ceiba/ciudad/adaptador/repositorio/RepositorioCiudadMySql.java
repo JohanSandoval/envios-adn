@@ -54,7 +54,6 @@ public class RepositorioCiudadMySql implements RepositorioCiudad {
     @Override
     public void actualizar(Ciudad ciudad) {
         SqlParameterSource parameterSource = this.obtenerParametrosCiudad(ciudad);
-        System.out.println(ciudad);
         this.customNamedParameterJdbcTemplate.actualizar(parameterSource, sqlActualizar);
     }
 

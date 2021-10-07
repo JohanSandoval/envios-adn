@@ -20,8 +20,8 @@ public class MapeoUsuario implements RowMapper<DtoUsuario>, MapperResult {
         String telefono = resultSet.getString("telefono");
 
         Long idCiudad = resultSet.getLong("id_ciudad");
-        String NombreCiudad = resultSet.getString("nombre_ciudad");
-        DtoCiudad ciudad = new DtoCiudad(idCiudad, NombreCiudad);
+        String nombreCiudad = resultSet.getString("nombre_ciudad");
+        DtoCiudad ciudad = new DtoCiudad(idCiudad, nombreCiudad);
 
         return new DtoUsuario(id, cedula, nombre, apellido, ciudad, telefono);
     }

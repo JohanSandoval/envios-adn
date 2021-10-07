@@ -1,7 +1,6 @@
 package com.ceiba.usuario.modelo.dto;
 
 import com.ceiba.ciudad.modelo.dto.DtoCiudad;
-import com.ceiba.ciudad.modelo.entidad.Ciudad;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

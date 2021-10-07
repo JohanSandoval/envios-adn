@@ -1,6 +1,5 @@
 package com.ceiba.usuario.comando;
 
-import com.ceiba.ciudad.modelo.entidad.Ciudad;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

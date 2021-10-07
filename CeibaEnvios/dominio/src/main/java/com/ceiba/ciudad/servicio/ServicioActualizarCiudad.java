@@ -21,7 +21,6 @@ public class ServicioActualizarCiudad {
 
     public void validarExistenciaPrevia(Ciudad ciudad){
         boolean existe = this.repositorioCiudad.existeExcluyendoId(ciudad.getId(), ciudad.getNombre());
-        System.out.println(existe);
         if (existe){
             throw new ExcepcionDuplicidad(LA_CIUDAD_NO_ESTA_REGISTRADA);
         }

@@ -14,14 +14,10 @@ public class ManejadorCrearCostoEnvio implements ManejadorComandoRespuesta<Coman
 
     private final FabricarCostoEnvio fabricarCostoEnvio;
     private final ServicioCrearCostoEnvio servicioCrearCostoEnvio;
-    private final RepositorioCostoEnvio repositorioCostoEnvio;
 
-    public ManejadorCrearCostoEnvio(FabricarCostoEnvio fabricarCostoEnvio,
-                                    ServicioCrearCostoEnvio servicioCrearCostoEnvio,
-                                    RepositorioCostoEnvio repositorioCostoEnvio) {
+    public ManejadorCrearCostoEnvio(FabricarCostoEnvio fabricarCostoEnvio, ServicioCrearCostoEnvio servicioCrearCostoEnvio) {
         this.fabricarCostoEnvio = fabricarCostoEnvio;
         this.servicioCrearCostoEnvio = servicioCrearCostoEnvio;
-        this.repositorioCostoEnvio = repositorioCostoEnvio;
     }
 
     @Override

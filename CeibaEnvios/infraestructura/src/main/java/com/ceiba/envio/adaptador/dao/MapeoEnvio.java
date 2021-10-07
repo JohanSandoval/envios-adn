@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import com.ceiba.ciudad.modelo.dto.DtoCiudad;
-import com.ceiba.ciudad.modelo.entidad.Ciudad;
-import com.ceiba.ciudad.puerto.dao.DaoCiudad;
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import org.springframework.jdbc.core.RowMapper;
 
